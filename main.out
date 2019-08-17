@@ -1,0 +1,46 @@
+\BOOKMARK [0][-]{section*.5}{List of Acronyms}{}% 1
+\BOOKMARK [0][-]{chapter*.7}{List of Figures}{}% 2
+\BOOKMARK [0][-]{chapter.1}{Introduction}{}% 3
+\BOOKMARK [1][-]{section.1.1}{Problem Statement}{chapter.1}% 4
+\BOOKMARK [1][-]{section.1.2}{Objectives}{chapter.1}% 5
+\BOOKMARK [1][-]{section.1.3}{Approach}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.4}{Content}{chapter.1}% 7
+\BOOKMARK [1][-]{section.1.5}{Conventions \046 Reading Advices}{chapter.1}% 8
+\BOOKMARK [0][-]{chapter.2}{Background}{}% 9
+\BOOKMARK [1][-]{section.2.1}{Terminology}{chapter.2}% 10
+\BOOKMARK [2][-]{subsection.2.1.1}{Vulnerability VS Weakness}{section.2.1}% 11
+\BOOKMARK [2][-]{subsection.2.1.2}{Black VS White hat hacker}{section.2.1}% 12
+\BOOKMARK [2][-]{subsection.2.1.3}{Kinds of assessment}{section.2.1}% 13
+\BOOKMARK [1][-]{section.2.2}{Types of penetration test}{chapter.2}% 14
+\BOOKMARK [2][-]{subsection.2.2.1}{Blackbox}{section.2.2}% 15
+\BOOKMARK [2][-]{subsection.2.2.2}{Whitebox}{section.2.2}% 16
+\BOOKMARK [2][-]{subsection.2.2.3}{Greybox}{section.2.2}% 17
+\BOOKMARK [1][-]{section.2.3}{Methodologies \046 Techniques}{chapter.2}% 18
+\BOOKMARK [2][-]{subsection.2.3.1}{ptes}{section.2.3}% 19
+\BOOKMARK [2][-]{subsection.2.3.2}{Wireless penetration testing}{section.2.3}% 20
+\BOOKMARK [2][-]{subsection.2.3.3}{Reverse engineering}{section.2.3}% 21
+\BOOKMARK [2][-]{subsection.2.3.4}{Hardware hacking}{section.2.3}% 22
+\BOOKMARK [1][-]{section.2.4}{Tools \046 Resources}{chapter.2}% 23
+\BOOKMARK [2][-]{subsection.2.4.1}{Pentesting platforms}{section.2.4}% 24
+\BOOKMARK [2][-]{subsection.2.4.2}{Intelligence Gathering}{section.2.4}% 25
+\BOOKMARK [2][-]{subsection.2.4.3}{Vulnerability Analysis}{section.2.4}% 26
+\BOOKMARK [2][-]{subsection.2.4.4}{Exploitation}{section.2.4}% 27
+\BOOKMARK [2][-]{subsection.2.4.5}{Reverse engineering}{section.2.4}% 28
+\BOOKMARK [0][-]{chapter.3}{Scope}{}% 29
+\BOOKMARK [1][-]{section.3.1}{Literature review}{chapter.3}% 30
+\BOOKMARK [2][-]{subsection.3.1.1}{Parrot AR Drone}{section.3.1}% 31
+\BOOKMARK [2][-]{subsection.3.1.2}{Known vulnerabilities}{section.3.1}% 32
+\BOOKMARK [1][-]{section.3.2}{Scope definition}{chapter.3}% 33
+\BOOKMARK [2][-]{subsection.3.2.1}{Scope limitation}{section.3.2}% 34
+\BOOKMARK [2][-]{subsection.3.2.2}{Flitt Selfie Cam}{section.3.2}% 35
+\BOOKMARK [2][-]{subsection.3.2.3}{C-me Selfie Drone}{section.3.2}% 36
+\BOOKMARK [1][-]{section.3.3}{Intelligence gathering}{chapter.3}% 37
+\BOOKMARK [1][-]{section.3.4}{Vulnerability analysis}{chapter.3}% 38
+\BOOKMARK [0][-]{chapter.4}{Exploits}{}% 39
+\BOOKMARK [0][-]{chapter.5}{Framework}{}% 40
+\BOOKMARK [0][-]{chapter.6}{Conclusion}{}% 41
+\BOOKMARK [1][-]{section.6.1}{Summary}{chapter.6}% 42
+\BOOKMARK [1][-]{section.6.2}{Objectives}{chapter.6}% 43
+\BOOKMARK [1][-]{section.6.3}{Matched Criteria}{chapter.6}% 44
+\BOOKMARK [1][-]{section.6.4}{Future Works}{chapter.6}% 45
+\BOOKMARK [0][-]{section*.28}{References}{}% 46

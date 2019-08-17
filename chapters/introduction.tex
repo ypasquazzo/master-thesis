@@ -1,0 +1,107 @@
+\begin{chaptercover}{Introduction}%
+{\coverepigraph{``When functionality is all that matters, security is often overlooked."}{\textsc{Alexandre D'Hondt} \newline {\normalsize\vspace{-.3cm}Cybersecurity expert at the Belgian Defense}}
+{\large \hyphenation{} \bigletter{I}{nternet of Things} is on the rise with more than 30 billion devices connected worldwide expected by 2020. Today, controlling a device remotely has become the norm, especially through wireless protocols. Therefore, it is common to find light commercial drones which are pilotable with a simple smartphone. As a result, malicious individuals might be tempted to leverage common security flaws in this field. \newline \\ From general to particular, this introduction reduces the scope to the field of security assessment, more exactly penetration testing, through the problem statement, higlights the desired objectives and approach and dissects the remainder of this document, that is, what we were able to investigate and perform during our master thesis, using a few conventions to be kept in mind while reading it.\newline\\}}%
+{introduction}
+
+\begin{projectdata}
+\begin{itemize}[labelsep=1cm]
+  \item [\textbf{Domain}] Vulnerability Assessment \& Penetration Testing
+  \item [\textbf{Scope}] Internet of Things : light commercial drones
+  \item [\textbf{Audience}] Vulnerability Hunters
+  \item [\textbf{Purpose}] Study the security of common light commercial drones and build a penetration testing framework based on the acquired knowledge
+\end{itemize}
+\end{projectdata}
+
+\section{Problem Statement}
+{\hyphenation{generally}
+The past few years, more and more connected devices have invaded our daily lives. Although this generally allows us to improve our living environment, the proliferation of these connected gadgets is not necessarily without consequences. Indeed, each of these devices can be remotely controlled, either from the Internet or in their vicinity, which implies obvious security risks. More specifically, this work focuses on some ways how an attacker could break into light commercial drones and the impact it could have. To name a few, a malicious person might be able to eavesdrop the video of a device, steal or even crash it.}
+
+Some companies have already developed some commercial products in order to provide protection against drones threatening safety, security and privacy. Some of these solutions are as simple as firing a net to catch a device or disrupting the signal by emitting interference and thus making a drone inoperable. Some more advanced technologies also tackle the problem by sending specific commands to force a landing or make a drone go back to a certain point.
+
+But, as far as we know, in the scope of drone software security, there still lacks a convenient open-source solution for gathering and coordinating exploits, one toolkit such as Metasploit, which is already well-established regarding OS penetration testing. That is what we propose in this master thesis; we try, first, to develop several exploits working on the drones we were provided, then we create an open source framework that we design to be modular and easy to contribute to.
+
+
+\section{Objectives}
+Our objectives are four-fold :
+\begin{enumerate}[itemsep=0.2cm,topsep=0.1cm]
+  \item State the \textbf{background}.
+  \begin{enumerate}[label=\Alph* --,align=left,itemsep=.1cm]
+    \item Review the current literature about IT security and especially IoT security.
+    \item Search for processes and methodologies for hacking systems.
+    \item Browse some existing solutions and tools and select relevant ones for exploitation.
+  \end{enumerate}
+  \item Narrow our \textbf{scope}.
+  \begin{enumerate}[label=\Alph* --,align=left,itemsep=.1cm]
+    \item Select some models of light commercial drones based on their technology.
+    \item Filter out WiFi-based drones and understand their working.
+  \end{enumerate}
+  \item Build some \textbf{exploits} for breaking into the selected drones.
+  \begin{enumerate}[label=\Alph* --,align=left,itemsep=.1cm]
+    \item Find attack chains for the selected models of drones.
+    \item Design and implement short scripts for exploiting found security holes.
+  \end{enumerate}
+  \item Put it altogether in a \textbf{framework}.
+  \begin{enumerate}[label=\Alph* --,align=left,itemsep=.1cm]
+    \item Set the basis for the framework.
+    \item Turn the exploits into reusable modules.
+  \end{enumerate}
+\end{enumerate}
+
+\section{Approach}
+The school provides some criteria related to the scientific and technological content that are worth being parsed regarding our approach. Succinctly, these criteria match our approach like follows :
+{\hyphenation{}
+\begin{enumerate}[itemsep=0.1cm,topsep=0.1cm]
+  \item {\color{FirstBlue}\bfseries Problem analysis} : From general to particular, we narrow our scope to a few targets and clearly state the requirements for the delivrables.
+  \item {\color{FirstBlue}\bfseries Solution provided} : We implement the requirements into exploit scripts and ultimately a penetration testing framework tailored to drone hacking.
+  \item {\color{FirstBlue}\bfseries Rigor of the approach} : We segment our approach from the state-of-the-art knowledge to measurable and assessable practical outcomes.
+  \item {\color{FirstBlue}\bfseries Innovation} : We provide a brand new solution, gather and leverage the best of the parsed and acquired knowledge.
+  \item {\color{FirstBlue}\bfseries Personal contribution} : We develop exploit scripts and modules for the new penetration testing framework.
+  \item {\color{FirstBlue}\bfseries Avenues for future development} : We provide an extensible solution that could stir up the curiosity of drone hacking enthusiasts.
+\end{enumerate}}
+
+Regarding the skills acquired during our formation at the school, this project mainly applies, directly or indirectly, the following courses :
+\begin{itemize}[itemsep=0.1cm,topsep=0.1cm]
+  \hyphenation{}
+  \item{} [{\color{FirstBlue}\bfseries B38}] Operating systems and introduction to IoT : By learning the basics of the Linux operating system and therefore allowing to have a better understanding of the architecture of the drones.
+  \item{} [{\color{FirstBlue}\bfseries M18}] Network programming and software security : By using the acquired knowledge and tools related to network protocols to develop exploits that can be used from a distance. Cryptography knowledge were also a must-have.
+  \item{} [{\color{FirstBlue}\bfseries M18}]  Internet of Things : Because it is the main subject of this thesis, and, in addition to this, the course strongly insisted on penetration testing and security.
+  \item{} [{\color{FirstBlue}\bfseries M18}] Network security : By having prior knowledge of the specifics of network security, such as safe connection to a remote host.
+  \item{} [{\color{FirstBlue}\bfseries M28}] Study of wireless networks : By applying the knowledge of the 802.11 protocol I order to successfully capture and decrypt WiFi transmissions.
+  \item{} [{\color{FirstBlue}\bfseries M18+M28}] Communication and language : By writing the thesis in English, thus increasing the scope of readers.
+\end{itemize}
+
+\section{Content}
+The remainder of this document is structured as follows :
+\begin{itemize}[itemsep=0.1cm,topsep=0.1cm]
+  \item \hyperref[background]{\color{FirstBlue}\bfseries Chapter 2 -- Background} provides background information in the field of IT security and especially drone hacking. It explains some relevant methodologies and processes and outlines a few existing solutions, either commercial or open-source.
+  \item \hyperref[scope]{\color{FirstBlue}\bfseries Chapter 3 -- Scope} presents some models of drones and their overall working, fixing the scope of this thesis to a few targets.
+  \item \hyperref[exploits]{\color{FirstBlue}\bfseries Chapter 4 -- Exploits} explains the applied hacking techniques and their related exploit scripts.
+  \item \hyperref[framework]{\color{FirstBlue}\bfseries Chapter 5 -- Framework} presents the drone penetration testing framework and its modules, developed from the aforementioned exploit scripts.
+  \item \hyperref[conclusion]{\color{FirstBlue}\bfseries Conclusion} closes this introduction by presenting a general summary, by parsing the achieved objectives and outcomes of this work and by providing ways ahead and ideas for future works.
+\end{itemize}
+
+
+\section{Conventions \& Reading Advices}
+This document is organized such that it can be read mostly using a method in three passes. Indeed, the reader who wants to spare time can get an insight of this work, as a first pass, by simply reading the chapter cover pages. The reader who can take a bit more time for this reading, as a second pass, can directly jump to the end of the chapters for reading the summaries and discussions. Ultimately, the interested reader, as a third pass, can read the entire content.
+
+\begin{tip}
+\hyphenation{quotation contain chapters}
+\vspace{-.5cm}
+\paragraph{Why such a layout ?}\hfill
+
+In order to get this document as much attractive as possible, we designed it with an unusual style, starting each chapter with a cover page providing a quotation from an IT professional and introducing the chapter matter bouncing from the quotation. We hope you will enjoy reading it !
+
+\paragraph{Want to spare time ?} \hfill
+
+Check the summaries and related discussions at the end of each chapter, they contain information enough so that you can quickly get the main thread !
+
+\paragraph{More focused on Drone Hacking ?} \hfill
+
+Check chapters \hyperref[background]{\color{FirstBlue}\bfseries 2} and \hyperref[scope]{\color{FirstBlue}\bfseries 3} then look at the summaries and related discussions of chapters \hyperref[exploits]{\color{FirstBlue}\bfseries 4} and \hyperref[framework]{\color{FirstBlue}\bfseries 5}.
+
+\paragraph{More focused on the Exploitation Framework ?} \hfill
+
+Check chapters \hyperref[exploits]{\color{FirstBlue}\bfseries 4} and \hyperref[framework]{\color{FirstBlue}\bfseries 5} and their related appendices.
+\end{tip}
+
+\end{chaptercover}

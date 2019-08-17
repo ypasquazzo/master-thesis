@@ -1,0 +1,42 @@
+\glossarysection[\glossarytoctitle]{\glossarytitle}\glossarypreamble
+\begin{theglossary}\glossaryheader
+\glsgroupheading{A}\relax \glsresetentrylist %
+\glossentry{apt}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{iii}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{7}}}\glsgroupskip
+\glsgroupheading{C}\relax \glsresetentrylist %
+\glossentry{cna}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{iii}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{6}}}%
+\glossentry{cve}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{iii}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{6}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{21}}}\glsgroupskip
+\glsgroupheading{I}\relax \glsresetentrylist %
+\glossentry{ids}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{iii}}}%
+\glossentry{ips}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{iii}}}%
+\glossentry{is}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{iii}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{6\delimR 8}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{10\delimR 12}}}\glsgroupskip
+\glsgroupheading{P}\relax \glsresetentrylist %
+\glossentry{poc}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{iii}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{7}}}%
+\glossentry{pt}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{iii}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{7}}}%
+\glossentry{ptes}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{i}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{iii}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{v}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{5}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{9\delimN 10}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{12}}}\glsgroupskip
+\glsgroupheading{V}\relax \glsresetentrylist %
+\glossentry{va}{\glossaryentrynumbers{\relax 
+		\setentrycounter[]{page}\glsnumberformat{iii}\delimN 
+		\setentrycounter[]{page}\glsnumberformat{7}}}%
+\end{theglossary}\glossarypostamble
