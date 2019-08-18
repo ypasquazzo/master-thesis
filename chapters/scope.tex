@@ -24,8 +24,8 @@ In every model of light commercial drone, we can figure out that a pattern alway
 
 \begin{itemize}
   \item \textbf{Fly control PCB} : It contains a microcontroller for holding drone's software.
-  \item \textbf{Antenna} : Depending on the wireless techonology, lots of drones hold a WiFi antenna in 2.4GHz.
-  \item \textbf{Accelerometer} : This is required for the stabilitization of the drone.
+  \item \textbf{Antenna} : Depending on the wireless technology, lots of drones hold a WiFi antenna in 2.4GHz.
+  \item \textbf{Accelerometer} : This is required for the stabilization of the drone.
   \item \textbf{Firmware} : This can be a light Unix-based ARM operating system like HiLinux \cite{hilinux} with a toolkit like BusyBox \cite{busybox}. Sometimes, an update mechanism can be used, e.g. through FTP for the transfer between the remote control and the drone.
   \item \textbf{Camera} : This streams the filmed images through a protocol like \acrshort{rtsp} \cite{rfc7826}.
   \item \textbf{Fly control application} : When using a smartphone as the remote control, this can be an Android or iOS application.
@@ -143,7 +143,7 @@ Hobbico, Inc. was a manufacturer and distributor of hobby products including rad
 
 Given the data collected in Subsections \ref{subsec:flitt-selfie-cam} and \ref{subsec:cme-selfie-drone}, we can already find some interesting information in the provided manuals. We can figure out that both documentations mention the SSID format and the default password, "\texttt{12345678}".
 
-Searching further for other information and documentation on search engines does not provide more data. In both cases, there is no official sales platform, so the drones are only available for sale or via third-party resellers. In these circumstances, the only information available was technical characteristics presented in ways that promote device marketing. Similarly, the posts on drone-related forums corresponding to the models we were interested in never discussed security topics, but were generally devoted to describing the control characteristics and the quality of the camera.
+Searching further for additional information and documentation on search engines does not provide more data. In both cases, there is no official sales platform, so the drones are only available for sale or via third-party resellers. In these circumstances, the only information available was technical characteristics presented in ways that promote device marketing. Similarly, the posts on drone-related forums corresponding to the models we were interested in never discussed security topics, but were generally devoted to describing the control characteristics and the quality of the camera.
 
 We then started to dismantle the drones so we could take a look at the different components. Only the Flitt could be dismantled completely without taking too much risk of damaging it. This allowed us to highlight the different components as presented in Subsection \ref{subsec:typical-drone-design}.
 
@@ -154,7 +154,7 @@ Even if this operation takes us out of the traditional framework of a pentest, i
 The next step is to inventory the vulnerabilities on the devices. To do this, we must perform more intrusive tests than in the previous section.
 
 \begin{tip}
-First of all, it is worthwhile to mention that both drones communicate through 2.4 GHz WiFi secured with a WPA2-PSK technology. Although this technology is considered as secure, it is still possible for an attacker to crack the password, as described in Subsection \ref{subsec:hacking-techniques}. A specific module will accordingly be developed for that purpose in the future framework. Taking that into account, all the further tests will be carried out assuming that we have access to the WiFi network of the targeted drone. The interested reader can see an example of WPA2 cracking in Appendix \ref{app:wifi-cracking}.
+First of all, it is worth to mention that both drones communicate through 2.4 GHz WiFi secured with WPA2-PSK. Although this technology is considered as secure, it is still possible for an attacker to crack the password, as described in Subsection \ref{subsec:hacking-techniques}. A specific module will accordingly be developed for that purpose in the future framework. Taking that into account, all the further tests will be carried out assuming that we have access to the WiFi network of the targeted drone. The interested reader can see an example of WPA2 cracking in Appendix \ref{app:wifi-cracking}.
 \end{tip}
 
 \subsection{Network scanning}
@@ -231,9 +231,9 @@ Except for the FTP server on port TCP/21 that might contain vulnerabilities, the
 
 \subsection{Reverse engineering}\label{subsec:reverse-engineering}
 
-Each of the drone is controlled trough a mobile application, available for iOS or Android. The goal is to decompile these applications to better understand how the drone works, how and what commands are sent and if it has usable default settings.
+Each of the drone is controlled trough a mobile application, available for iOS or Android. The goal is to decompile these applications to better understand how the drone works, how and what commands are sent, and if it has usable default settings.
 
-We will focus on the Android application, since it is easier to decompile for me working on a laptop. 
+We will focus on the Android application, since it is easier to decompile for us working on a laptop. 
 
 We use two applications mentioned in Subsection \ref{subsec:tools-and-resources} to perform the decompilation in order to compare the results. Both of them gave exactly the same result, so we continued working only with Jadx, since it was more user friendly.
 
@@ -256,7 +256,7 @@ While trying to decompile the applications, we faced two major problems :
 
 \paragraph{Decompilation failures} Java is compiled into an intermediate form, JVM bytecode, which is closer (more similar) to the source than assembly. In particular, \texttt{.class} files include metadata for class names, method names, field and parameter types, etc... All a Java decompiler needs to do is look at the instructions in each method body, and turn them into the appropriate syntactic constructs.
 
-Unfortunately, sometimes it happens that some decompilers fail to reverse parts of the code, especially when anti-debugging measures were used at compilation \cite{anti-debugging}, and the only solution for that -- except coding our own decompiler which is not the intent of this work -- is to find one that does it successfully. We tired to do so with other tools but couldn’t be a hundred percent successful, so we had to work with some portion of the code remaining as shown in the figure.
+Unfortunately, sometimes it happens that some decompilers fail to reverse parts of the code, especially when anti-debugging measures were used at compilation \cite{anti-debugging}, and the only solution for that -- except coding our own decompiler which is not the intent of this work -- is to find one that does it successfully. We tried to do so with other tools but couldn’t be a hundred percent successful, so we had to work with some portion of the code remaining as shown in the figure.
 
 \begin{figure}[H]
   \centering
@@ -282,7 +282,7 @@ From there, our objectives were threefold :
   \item Identify key commands
 \end{enumerate}
 
-\paragraph{Default credentials} Unfortunately, nothing to be found here concerning the Flitt, so it appears that the application doesn’t use the Telnet feature. Therefore, we can ask ourselves why the telnet port is open on the drone ! We were more successful with the C-me, since the credentials for the FTP connection were hard-coded in the software. This means that they are similar for every drone.
+\paragraph{Default credentials} Unfortunately, nothing to be found here concerning the Flitt, so it appears that the application doesn’t use the Telnet feature. Therefore, we asked ourselves why the telnet port is open on the drone ! We were more successful with the C-me, since the credentials for the FTP connection were hard-coded in the software. This means that they are similar for every drone.
 
 \begin{figure}[H]
   \centering
@@ -344,7 +344,7 @@ In order to use efficiently Aircrack-ng (see Subsection \ref{subsec:tools-and-re
 
 So, the first step is to capture the WiFi traffic between the smartphone and the drone. To this end, the obvious choice was to use Aircrack-ng to capture and decrypt the packets and Wireshark to analyze them.
 
-The process used is somewhat similar to the one described in Appendix \ref{app:wifi-cracking}, but diverge at the WPA handshake capturing step. Indeed, this time around there is no need to send deauthentication packets in order to force a WPA handshake. We simply have to lauch the wifi capture and only then connect the smartphone to the WiFi, thus generating the handshake. When it is captured, an indication with the WPA handshake captured will be displayed the same way as in Appendix \ref{app:wifi-cracking} at the corresponding step.
+The process used is somewhat similar to the one described in Appendix \ref{app:wifi-cracking}, but diverge at the WPA handshake capturing step. Indeed, this time around there is no need to send deauthentication packets in order to force a WPA handshake. We simply have to launch the WiFi capture and only then connect the smartphone to the WiFi, thus generating the handshake. When it is captured, an indication with the WPA handshake captured will be displayed the same way as in Appendix \ref{app:wifi-cracking} at the corresponding step.
 
 As a proof, we can open the capture with Wireshark as shown in Figure \ref{fig:traffic-analysis-wpa-handshake}, and start looking for the Open Authentication phase (\textit{Auth Request}, \textit{Auth Response}, \textit{Association Request}, \textit{Association Response}) followed by the 4-way handshake (EAPOL-Messages 1 to 4). Once the handshake is completed, both client and \acrshort{ap} have acquired the key for data encryption, so from that point onward all the data frames (not management frames, null frames) are encrypted.
 
@@ -386,7 +386,7 @@ And we can now analyze the decrypted packets in Wireshark. Notice that the IP ad
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{figures/traffic-analysis-decrypted-packets}
-  \caption{Decryted traffic as seen in Wireshark}
+  \caption{Decrypted traffic as seen in Wireshark}
   \label{fig:traffic-analysis-decrypted-packets}
 \end{figure}
 
@@ -413,6 +413,41 @@ From this point, we were able to generate the desired traffic and analyze the co
 \end{center}
 \endgroup
 
-This set of commands corresponds to the \textbf{C-me} drone. Indeed, even if we were able to apply the same methodology on the Flitt, we discoverd that the flying commands were too inconstant in order to distinguish a pattern. Each command is \textbf{repeated every 10ms}.
+This set of commands corresponds to the \textbf{C-me} drone. Indeed, even if we were able to apply the same methodology on the Flitt, we discovered that the flying commands were too inconstant in order to distinguish a pattern. Each command is \textbf{repeated every 10ms}.
+
+\begin{summary}
+Having set the basics of what is penetration testing, the logical next step is the actual application of the concept to the drones. The first phase of the pentester’s work that consists in \textbf{gathering} as much \textbf{information} as possible on his target, starting with familiarizing with the technology in play.
+
+This effort allowed us to bring out that some work had already been done in regards to vulnerability assessment of drones, the most studied case being the one of the \textbf{Parrot AR Drone} \cite{github-drone-hacking} \cite{hacking-securing-ardrone2}. This allowed us to see what could be done in the field, and can serve as inspiration for later use. Nevertheless, there still lacks a convenient open-source solution for gathering and coordinating exploits.
+
+This is also the point where the drones on which the pentest will be carried out were defined. Indeed, the scope of this work will be limited to \textbf{WiFi controlled} device only, and thus only the \textbf{Flitt Selfie Cam} and the \textbf{C-me Selfie Drone} match the criteria.
+
+After this first phase, the actual penetration test begins and proceeds with \textbf{information gathering} endeavor. It is the phase where all publicly available information related to the target is located, seeking ways that could be used to breach into the systems. The tools such as port scanners are used in order to get an understanding of the system’s target and the software that is on it.
+
+Using that information, it is possible to imagine what impact the different findings may have on the client and the \textbf{vulnerability analysis} part can proceed where the information found is used to locate possible vulnerabilities in the systems and process to the exploitation phase.
+
+\begingroup
+\renewcommand*{\arraystretch}{1.3}
+\begin{center}
+\rowcolors{2}{gray!25}{white}
+  \begin{tabular}{L{4cm}L{5.5cm}L{5.5cm}}
+  \rowcolor{gray!50}
+  \hf{4cm}{} & \hf{5.5cm}{Flitt Selfie Cam} & \hf{5.5cm}{C-me Selfie Drone} \\
+  WIFI & 2.4 GHz & 2.4 GHz \\
+  Security & WPA2-PSK & WPA2-PSK \\
+  SSID & FLITT-[6 x hex char] & C-me-[6 x hex char] \\
+  Default password & 12345678 & 12345678 \\
+  Open ports & TCP/23 (Telnet) \newline \textbf{Username}: to be determined \newline \textbf{Password}: to be determined & TCP/21 (FTP) \newline \textbf{Username}: AW819 \newline \textbf{Password}: 1663819 \\
+  Firware update mecanism & No & Yes \\
+  System commands & Yes \newline 75 possible commands \newline (see APK) & Yes \newline 75 possible commands \newline (see APK) \\
+  Hardware & Hi3518 video chip & Not available \\
+  Flying commands & No pattern visible & Main commands identified \\
+\end{tabular}
+\end{center}
+\endgroup
+\end{summary}
+
+\begin{discussion}
+\end{discussion}
 
 \end{chaptercover}

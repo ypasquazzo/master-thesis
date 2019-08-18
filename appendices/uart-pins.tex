@@ -1,0 +1,45 @@
+\begin{appchaptercover}{UART pins}{app:uart-pins}
+
+In this appendix, the \acrshort{uart} pins details of the Hi3518 IP camera SoC are presented. This is the main chip on which the OS is installed on the Flitt Selfie Cam.
+
+\begingroup
+\renewcommand*{\arraystretch}{1.3}
+
+\begin{center}
+\captionof{table}{UART 0 pins}
+\rowcolors{2}{gray!25}{white}
+  \begin{tabular}{C{1.5cm}C{3cm}C{1.2cm}C{2.5cm}C{1.5cm}L{6cm}}
+  \rowcolor{gray!50}
+  \hf{1.5cm}{Position} & \hf{3cm}{Name} & \hf{1.2cm}{Type} & \hf{2.5cm}{Drive current (mA)} & \hf{1.5cm}{Voltage (V)} & \hf{6cm}{Description} \\
+  T19 & UART0\_RXD & IPU & None & 3.3 & UART 0 RX data \\
+  T18 & UART0\_TXD & I/O & 4    & 3.3 & UART 0 TX data \\
+  \end{tabular}
+\end{center}
+
+\begin{center}
+\captionof{table}{UART 1 pins}
+\rowcolors{2}{gray!25}{white}
+  \begin{tabular}{C{1.5cm}C{3cm}C{1.2cm}C{2.5cm}C{1.5cm}L{6cm}}
+  \rowcolor{gray!50}
+  \hf{1.5cm}{Position} & \hf{3cm}{Name} & \hf{1.2cm}{Type} & \hf{2.5cm}{Drive current (mA)} & \hf{1.5cm}{Voltage (V)} & \hf{6cm}{Description} \\
+  T17 & UART1\_CTSN & I/O & 4 & 3.3 & Function 0: GPIO2\_4 \newline Function 1: UART1\_CTSN \\
+  T16 & UART1\_RTSN & I/O & 4 & 3.3 & Function 0: GPIO2\_2 \newline Function 1: UART1\_RTSN \\
+  V19 & UART1\_RXD & IPU/O & 4 & 3.3 & Function 0: GPIO2\_3 \newline Function 1: UART1\_RXD \\
+  U17 & UART1\_TXD & I/O & 4 & 3.3 & Function 0: GPIO2\_5 \newline Function 1: UART1\_TXD \\
+  \end{tabular}
+\end{center}
+
+\begin{center}
+\captionof{table}{UART 2 pins}
+\rowcolors{2}{gray!25}{white}
+  \begin{tabular}{C{1.5cm}C{3cm}C{1.2cm}C{2.5cm}C{1.5cm}L{6cm}}
+  \rowcolor{gray!50}
+  \hf{1.5cm}{Position} & \hf{3cm}{Name} & \hf{1.2cm}{Type} & \hf{2.5cm}{Drive current (mA)} & \hf{1.5cm}{Voltage (V)} & \hf{6cm}{Description} \\
+  U18 & UART2\_RXD & IPU/O & 4 & 3.3 & Function 0: GPIO7\_6 \newline Function 1: UART2\_RXD \\
+  U19 & UART2\_TXD & I/O & 4 & 3.3 & Function 0: GPIO7\_7 \newline Function 1: UART2\_TXD \\
+  \end{tabular}
+\end{center}
+
+\endgroup
+
+\end{appchaptercover}
