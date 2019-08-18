@@ -15,12 +15,14 @@ In order to emphasize the difference between weaknesses and vulnerabilities, we 
 
 \paragraph{Vulnerabilities} are a consequence of weaknesses that are already present in the code. \textit{A software vulnerability, such as those enumerated on the \acrfull{cve} ® List, is a mistake in software that can be directly used by a hacker to gain access to a system or network.} \cite{mitre-cwe}
 
+To sum it up, all vulnerabilities rely on weaknesses, but not all weaknesses entail vulnerabilities.
+
 \paragraph{\acrfull{cve} ®} is a list of common identifiers for publicly known vulnerabilities.
 
 \textit{Use of CVE entries, which are assigned by \acrfull{cna} from around the world, ensures confidence among parties when used to discuss or share information about a unique software or firmware vulnerability, provides a baseline for tool evaluation, and enables automated data exchange.} \cite{mitre-cve}
 
 \textit{By definition, \acrshort{cve} is :
-\begin{itemize}[itemsep=0.1cm,topsep=0.1cm]
+\begin{itemize}[itemsep=0.01cm,topsep=0.01cm]
   \item One identifier for one vulnerability or exposure
   \item One standardized description for each vulnerability or exposure
   \item A dictionary rather than a database
@@ -36,9 +38,9 @@ In order to emphasize the difference between weaknesses and vulnerabilities, we 
 
 \paragraph{Whitehat hacker (the {\color{forestgreen(web)} Good})} This profile pertains to the security expert and/or researcher who searches for security issues in \acrshort{is}' and whose goal is to fill the security gaps.
 
-\begin{info}
+\begin{tip}
 In the scope of this work, we act as whitehat hackers as our project aims to identify and help fix security issues on light commercial drones.
-\end{info}
+\end{tip}
 
 \subsection{Kinds of assessment}
 
@@ -61,9 +63,9 @@ Ultimately, the main purpose of these kinds of security assessments is to report
 
 \paragraph{Vulnerability hunting} This notion also refers to system or software review, but generally on a product outside its operating environment. It pertains to studying an asset in order to demonstrate its potential security flaws and help the manufacturer fix them before or yet after its deployment on the market.
 
-\begin{info} \hyphenation{manufacturers}
+\begin{tip} \hyphenation{manufacturers}
 In our case, we use the penetration testing approach and its related techniques to achieve vulnerability hunting on multiple drone models from various manufacturers.
-\end{info}
+\end{tip}
 
 \section{Types of penetration test}
 
@@ -116,9 +118,9 @@ Reasons for grey box penetration testing :
   \item[\checkmark] Cost effective
 \end{itemize}
 
-\begin{info} \hyphenation{}
+\begin{tip} \hyphenation{}
 The point here is that the type of testing we will achieve will depend on the target, as only a few information or even none could be available. We will see that some models of target and their related manufacturers are not always very transparent, then forcing the test to be limited to blackbox.
-\end{info}
+\end{tip}
 
 \section{Methodology, disciplines \& techniques}
 
@@ -172,17 +174,99 @@ Some well-known \acrshort{iot}-related wireless technologies with their specific
   \label{fig:wireless-technologies}
 \end{figure}
 
-\paragraph{Reverse engineering} Reverse engineering is the activity of studying an object to determine its internal function or manufacturing method. It is a common hacking technique since It can be used to understand in detail how a software works, allow bypassing software protections, and ultimately, lead to vulnerabilities. Note that it is common to encounter, when reverse engineering a software, some kind of code obfuscation or anti-debugging measure to prevent it from being easilly reversed.
+\paragraph{Reverse engineering} This is the activity of studying an object to determine its internal function or manufacturing method. It is a common hacking technique since It can be used to understand in detail how a software works, allow bypassing software protections, and ultimately, lead to vulnerabilities. Note that it is common to encounter, when reverse engineering a software, some kind of code obfuscation \cite{code-obfuscation} or anti-debugging measure to prevent it from being easilly reversed \cite{anti-debugging}.
 
-\paragraph{Hardware hacking} 
+\begin{indentbox}{1cm}
+\textbf{Obfuscation} is a technique by which code is rendered unintelligible to a human being. The program obtained from the obfuscated code remains perfectly executable and has the same functionality as a "clean" code.  The effectiveness of obfuscation is measured by the deobfuscator's programming effort, execution time, and resource levels necessary for the deobfuscator to produce readable source code. Thus, the challenge of obfuscation is similar to that of encryption: it is a question of producing a sufficiently obfuscated code to make any attempt of analysis useless because of the incredibly long computation times and the complexity of the treatments to realize. But the technological evolution is such that computer computing capabilities evolve rapidly, the duration of protection is short.
+\end{indentbox}
 
+\paragraph{Hardware hacking} This is the activity of patching or replacing pieces of electronics in a hardware to make it perform other operations than it was initially intended for. It can be useful to study a hardware for potential vulnerabilities or to reverse-engineer its working. More specific details are available about a technique in this field in Subsection \ref{subsec:uart-jtag}.
+
+
+\subsection{Hacking techniques}\label{subsec:hacking-techniques}
+
+\paragraph{Password cracking and guessing} is the process of recovering passwords from data stored or transmitted by a computer system.
+
+\begin{indentbox}{1cm}
+The objectives of such an action are manifold:
+\begin{itemize}
+  \item Recover a lost password
+  \item Bypass a security
+  \item Test the strength of a password
+\end{itemize}
+
+There are many techniques that have been developed to that end, each having advantages and limitations. The attacker thus has to adapt to each situation.
+
+\textbf{Brute forcing} a password consists in testing one by one all possible combinations of characters. The scope of the attack has to be fixed at the beginning (length, lowercase, capital letters, numbers ...). This is the most most naïve approach and will always succeed, but possibly in an unreasonable time depending on the complexity of the password.
+
+Using a \textbf{dictionary}, which is nothing but a file (often in text format) that contains hundreds of thousands, or millions of predefined passwords. In order to test these passwords, the hacker uses automated software that passes them one by one. This operation allows to speed up the process compared the brute force approach as it drastically reduces the search space but may not always succeed.
 
 \begin{info}
-For this work, we essentially apply the penetration testing methodology \acrshort{ptes} to wireless devices, using reverse engineering and hardware hacking to complement the assessment with in depth target understanding.
+One of the most popular lists of passwords is \texttt{rockyou.txt}. Back in 2009, a company named RockYou was hacked \cite{rockyou-hack}. This wouldn't have been too much of a problem if they hadn't stored all of their passwords unencrypted, in plain text for an attacker to see. They downloaded a list of all the passwords and made it publicly available. The list contains 14,341,564 unique passwords, used in 32,603,388 accounts. Kali Linux provides this dictionary file as part of its standard installation.
 \end{info}
 
+For the reference, other techniques may allow an attacker to retrieve a password without having to crack anything, namely \textbf{social engineering}, \textbf{phishing} and \textbf{sniffing}.
 
-\section{Tools \& Resources}
+Password attacks are often distinguished as offline or online ;
+\begin{itemize}
+  \item In \textbf{offline attacks}, a hash or an encrypted version of the password could be retrieved and the clear text value is to be obtained out of the live environment.
+  \item In \textbf{online attacks}, the attacker tries password attempts on the live authentication system.
+\end{itemize}
+\end{indentbox}
+
+\paragraph{Android application reversing} Most of \acrshort{iot} devices can be controlled through a smartphone, usually running on IOS or Android. In the context in this work, we will try to reverse engineer the APK’s that allows drone control.
+
+\begin{indentbox}{1cm}
+\begin{tabular}{C{.3\linewidth}m{.66\linewidth}}
+  \includegraphics[width=.35\textwidth]{figures/apk-file-structure}
+   &
+  APK is the file format designed for distributing Android application on its platform. It has some similarities with the JAR format. It is actually a simple ZIP archive, with pre-defined specific structure and contains notably :
+  \begin{itemize}
+    \item \texttt{res} :  resources not compiled in \texttt{ressources.arsc}
+    \item \texttt{META-INF} : security related information (manifest, certificates)
+    \item \texttt{Classes.dex} : the classes compiled in the DEX file format understandable by the Dalvik virtual machine
+    \item \texttt{ressources.arsc} : a file containing precompiled resources, such as binary XML for example
+    \item \texttt{AdroidManifest.xml} : an additional Android manifest file, describing the application
+  \end{itemize}
+  \\
+\end{tabular}
+
+Dalvik \cite{course-embedded-device} is a Virtual Machine for mobile phones and tablets, which is embedded in the Android operating system. DVM is intended to allow the simultaneous execution of several applications on a device of low capacity (little memory space and little computing power) thanks to a register-based architecture. On a register machine, as opposed to a stack-based machine such as the JVM, the low-level instructions directly contain the addresses of the source and destination registers, reducing the number of low-level instructions for manipulating the data.
+
+DEX (Dalvik Executable) is a binary file format, so it is compiled. We could say, that \texttt{.dex} file is for DVM something like \texttt{.class} files for JVM.
+\end{indentbox}
+
+\paragraph{Shell access via \acrshort{uart}}\label{subsec:uart-jtag} In the discipline of hardware hacking, one of the most useful ways to attack a device is using hardware-based exploitation techniques. These techniques are quite effective as most of the devices we encounter on a daily basis don’t usually have security protections build around the hardware aspect. Indeed, manufacturers often leave accessible some debug ports, more specifically \acrfull{uart} or \acrfull{jtag}. In short, these ports are used in factory to check the correct operation PCB. The \acrshort{uart} is used to communicate with the operating system. The \acrshort{jtag} is much more powerful and allows to communicate directly with the system on the chip. Unfortunately, the \acrshort{jtag} is not really standardized and requires much more time to know what is the function of each pin. However, there are cards made for this type of work and especially the JTAGulator \cite{jtagulator}.
+
+\begin{indentbox}{1cm}
+On the scope of this work, we will focus only on the \acrshort{uart}-based hacking, since we are not equipped to tackle \acrshort{jtag}. The \acrshort{uart} is a serial link for sending and receiving data. It has a fairly simple architecture, which comes down to a power supply (VCC and GND), a transmit pin (TX) and a receiver pin (RX). The transmitter speaks and the communication goes to his interlocutor (TX => RX) and the operation is reversed so that the receiver responds to the transmitter (TX => RX). It will therefore cross the connections.
+
+In most cases, the four pins of the \acrshort{uart} serial link situated next to each other. To determine which pin corresponds to VCC, GND, TX and RX, the easiest way is first to identify the GND by finding a known point in the PCB being the ground, and perform a continuity test with our multimeter. The VCC pin is not necessary in order to establish a connection so we just need to identify TX and Rx. To achieve that, simply turn the device on, and measure the difference in potential between the GND and the rest of the pins.
+\begin{itemize}[itemsep=0.1cm,topsep=0.1cm]
+  \item TX should have an unstable value because information is passing on this pin.
+  \item RX should be 0.
+\end{itemize}
+\end{indentbox}
+
+\begin{indentbox}{1cm}
+Once each pin identified, it is time to solder wires to the pins, and connect them to a computer’s USB port with the help of an adapter. To that end, we manufactured an USB-to-Serial adapter from a set of RJ-45 to DB-9 and DB-9 to USB cable, by cutting the RJ-45 end of it, identifying the TX, RX and ground wires and soldering a jumper wire to each end.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.7\linewidth]{figures/hw-hacking-wire}
+  \caption{Home-made \acrshort{uart} serial cable}
+  \label{fig:hw-hacking-wire}
+\end{figure}
+
+We use PuTTY \cite{putty} (on Windows) to connect the computer to the drone. The procedure consists in launching the serial connection on PuTTY while the drone is turned off, and then turn it on. This should provide us a shell access to the device’s operating system.
+\end{indentbox}
+
+\begin{tip}
+For this work, we essentially apply the penetration testing methodology \acrshort{ptes} to wireless devices, using reverse engineering and hardware hacking to complement the assessment with in depth target understanding.
+\end{tip}
+
+
+\section{Tools \& Resources}\label{subsec:tools-and-resources}
 
 In the past, hacking was difficult and required a lot of manual tinkering. Today, hackers have complete suites of automated test tools and processing capabilities that allow them to conduct much more sophisticated attacks, on much larger scales and much faster. In order to end framing the background, various existing security solutions are presented in order to get an overview of what could be usable in the implementation of a penetration test. The remaining of this section presents useful and popular tools distinguished by categories, relevant to penetration testing but not necessarily in our scope. For each tool, it is mentioned if it was used in this project or not.
 
@@ -346,7 +430,7 @@ With a map of all possible vulnerabilities and entry points, the pentester begin
 \end{solutiondata}
 
 \textbf{Aircrack-ng} \cite{aircrack-ng} is a complete suite of tools to assess WiFi network security. It focuses on different areas of WiFi security :
-\begin{itemize}
+\begin{itemize}[itemsep=0.1cm,topsep=0.1cm]
   \item Monitoring : Packet capture and export of data to text files for further processing by third party tools
   \item Attacking : Replay attacks, deauthentication, fake access points and others via packet injection
   \item Testing : Checking WiFi cards and driver capabilities (capture and injection)
@@ -355,9 +439,28 @@ With a map of all possible vulnerabilities and entry points, the pentester begin
 
 \subsection{Reverse engineering}
 
-\textbf{ILSpy}
+At some point in an assessment, it is frequent to encounter binaries we can analyze for potential vulnerabilities. In this case, we need to disassemble or decompile if possible the binary. A few relevant tools are presented hereafter for this purpose.
 
-\textbf{Hopper Disassembler}
+\begin{solutiondata}{jadx}
+\begin{itemize}[labelsep=1cm]
+  \item [\textbf{Type}] Java decompiler
+  \item [\textbf{Purpose}] Decompile an Android APK file into Java code
+  \item [\textbf{Pros}] Can be used in command line or through a GUI \newline Includes built-in search and deobfuscation tools
+  \item [\textbf{Used}] Yes
+\end{itemize}
+\end{solutiondata}
 
+\textbf{Jadx} \cite{jadx} is an open source decompiler that allows to import any DEX, APK, JAR or CLASS file and export it to DEX format easily. It is portable and does not require any installation, and the GUI version packs useful functionalities such as viewing decompiled code with highlighted syntax, jumping to declaration, finding the usage of a variable or a full text search.
+
+\begin{solutiondata}{hopper}
+\begin{itemize}[labelsep=1cm]
+  \item [\textbf{Type}] Binary disassembler
+  \item [\textbf{Purpose}] Disassemble and debug binary applications
+  \item [\textbf{Pros}] Allows the visualization of the assembly, the control flow graph, and the pseudo-code of a procedure at the same time \newline Is relatively inexpensive \newline Supports a broad range of binary architectures
+  \item [\textbf{Used}] No
+\end{itemize}
+\end{solutiondata}
+
+\textbf{Hopper Disassembler} \cite{hopper} read compiled software one byte at a time, until it recognizes a complete instruction, it then recreates part of the logical structure of the application, and allows to separate the different instructions into methods. Thanks to this analysis, Hopper is able to display a more graphic representation of the execution of the application and from there to manipulate it interactively.
 
 \end{chaptercover}
