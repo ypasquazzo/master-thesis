@@ -9,17 +9,17 @@ Several notions should be known before continuing. This section defines the most
 
 \subsection{Vulnerability VS Weakness}\label{subsec:vuln-vs-weakness}
 
-\paragraph{Vulnerability} 
+In order to emphasize the difference between weaknesses and vulnerabilities, we use the definitions of MITRE. \cite{mitre}
 
+\paragraph{Weaknesses} \textit{are flaws, faults, bugs and other errors in software implementation, code, design, or architecture that if left unaddressed could result in systems and networks being vulnerable to attack. Example of software weaknesses include but are not limited to: buffer overflows}, user interface errors, path name traversal, authentication errors, hardcoded credentials. \cite{mitre-cwe}
 
-\paragraph{Weakness} 
-
+\paragraph{Vulnerabilities} are a consequence of weaknesses that are already present in the code. \textit{A software vulnerability, such as those enumerated on the \acrfull{cve} ® List, is a mistake in software that can be directly used by a hacker to gain access to a system or network.} \cite{mitre-cwe}
 
 \paragraph{\acrfull{cve} ®} is a list of common identifiers for publicly known vulnerabilities.
 
-Use of CVE entries, which are assigned by \acrfull{cna} from around the world, ensures confidence among parties when used to discuss or share information about a unique software or firmware vulnerability, provides a baseline for tool evaluation, and enables automated data exchange.
+\textit{Use of CVE entries, which are assigned by \acrfull{cna} from around the world, ensures confidence among parties when used to discuss or share information about a unique software or firmware vulnerability, provides a baseline for tool evaluation, and enables automated data exchange.} \cite{mitre-cve}
 
-By definition, \acrshort{cve} is :
+\textit{By definition, \acrshort{cve} is :
 \begin{itemize}[itemsep=0.1cm,topsep=0.1cm]
   \item One identifier for one vulnerability or exposure
   \item One standardized description for each vulnerability or exposure
@@ -28,7 +28,7 @@ By definition, \acrshort{cve} is :
   \item The way to interoperability and better security coverage
   \item A basis for evaluation among services, tools, and databases
   \item Free for public download and use
-\end{itemize}
+\end{itemize}}
 
 \subsection{Black VS White hat hacker}
 
@@ -120,9 +120,9 @@ Reasons for grey box penetration testing :
 The point here is that the type of testing we will achieve will depend on the target, as only a few information or even none could be available. We will see that some models of target and their related manufacturers are not always very transparent, then forcing the test to be limited to blackbox.
 \end{info}
 
-\section{Methodologies \& Techniques}
+\section{Methodology, disciplines \& techniques}
 
-This section presents some methodologies and techniques that will be used in the remainder of this work.
+This section presents the chosen methodology and some disciplines and techniques that will be used in the remainder of this work.
 
 \subsection{\acrlong{ptes}}
 
@@ -131,9 +131,9 @@ After having introduced what is a pentest, let us look at a popular methodology 
 \begin{question}
 \textbf{But why do penetration testers need to follow a methodology ?}
 \begin{itemize}
-  \item The security world is changing fast, techniques and technologies are constantly changing, vulnerabilities are discovered on a daily basis. Faced with this, a bit of \textbf{structure} is needed. The methodologies allow to provide a fixed framework on the progress of a penetration test.
-  \item Faced with an \acrshort{is} or many, a pentester has to look into each system, service, port or IP which can hide a vulnerability, see a path all traced until the takeover of the system. This multiplied by the very large amount of testing to be done depending on the service or technology used, makes it is easy to get lost. A framed and fixed methodology then makes it possible to follow a \textbf{canvas} and thus to organize the penetration test so that it is as \textbf{complete} as possible and \textbf{repeatable}.
-  \item In the professional environment, \textbf{team working} is essential. This is also the purpose of common methodologies, norms and standards. A methodology known by several pentesters will facilitate and make more efficient the work within the team. Also, the report generated and the documentation will be made following a known frame : that of the methodology used.
+  \item The world is changing fast, security techniques and technologies are constantly evolving. Faced with this, \textbf{structure} is needed. The methodologies allow to provide a fixed framework on the progress of a penetration test.
+  \item Faced with an \acrshort{is} or many, a pentester has to look into each system, service, port or IP which can hide a vulnerability ; this cumbersome and error-prone. A framed and fixed methodology then makes it possible to follow a \textbf{canvas} and thus to organize the penetration test so that it is as \textbf{complete} as possible and \textbf{repeatable}.
+  \item In the professional environment, \textbf{team working} is essential. A methodology known by several pentesters will facilitate the work within the team. Also, the report generated will be made following a known frame.
 \end{itemize}
 \end{question}
 
@@ -144,7 +144,7 @@ First and foremost, a methodology will make it possible to not forget anything d
 \begin{figure}[H]
   \centering
   \includegraphics[width=\linewidth]{ptes-process}
-  \caption{The 7 steps of \acrshort{ptes}}
+  \caption{\acrshort{ptes}: the 7 steps}
   \label{fig:ptes-process}
 \end{figure}
 
@@ -158,13 +158,23 @@ First and foremost, a methodology will make it possible to not forget anything d
   \item \textbf{Reporting} : The Pentest approach described in the PTES ends with the reporting phase, and this is the most important phase because it consists in exposing the progress of the intrusion test and its fruits to the client. Reporting will be both technical and non-technical. The pentester will then detail the information retrieved during the Intelligence Gathering phase, expose the vulnerabilities listed and exploited and describe the misdeeds that have / could have been perpetrated in the Post-Exploitation phase. This phase is often oral but is always accompanied by a written deliverable containing all this information. Finally, the pentest team is often called upon to draw up a "Remediation Roadmap", i.e. a list of countermeasures, corrections and protections to be put in place so that the company has tracks to start on following the securing of his \acrshort{is}.
 \end{enumerate}
 
-\subsection{Wireless penetration testing}
+\subsection{Related disciplines}
 
+Beyond classical penetration testing on a wired network, multiple encompassed or complementary disciplines are worth being mentioned as they are applied along the process of this work.
 
-\subsection{Reverse engineering}
+\paragraph{Wireless penetration testing} According to the types of system being assessed, penetration testing can take different forms. Furthermore, this paves the way to multiple specialties in this field. Wireless devices are this kind of particular systems that open the way to specialized testing as any wireless communication can be eavesdropped when in the vicinity of a transmitting device. This is particularly true for the \acrshort{iot}'s which are often wireless devices left with almost no security. Given the dedicated standards and protocols used, wireless penetration testing therefore pertains to similar or alternative techniques and tools.
 
+Some well-known \acrshort{iot}-related wireless technologies with their specifications are listed hereafter :
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.7\linewidth]{figures/wireless-technologies}
+  \caption{Overview of protocols involved in \acrshort{iot} devices and applications \cite{iot-protocols}}
+  \label{fig:wireless-technologies}
+\end{figure}
 
-\subsection{Hardware hacking}
+\paragraph{Reverse engineering} Reverse engineering is the activity of studying an object to determine its internal function or manufacturing method. It is a common hacking technique since It can be used to understand in detail how a software works, allow bypassing software protections, and ultimately, lead to vulnerabilities. Note that it is common to encounter, when reverse engineering a software, some kind of code obfuscation or anti-debugging measure to prevent it from being easilly reversed.
+
+\paragraph{Hardware hacking} 
 
 
 \begin{info}
