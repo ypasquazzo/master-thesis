@@ -62,16 +62,9 @@
   \setcounter{chapter}{0}
   \addtocontents{toc}{\protect\setcounter{tocdepth}{0}} % for other parts (i.e. appendices), do not count sections, subsections, ...
   \addtocontents{ptc}{\protect\setcounter{tocdepth}{2}} % but for appendices' toc's, keep depth to 2
-%  \include{parts/glossary}
   \addtocontents{toc}{\protect\newpage}
   \include{parts/references}
-%  \include{parts/index}
   \def\xshiftfactor{.53} % scaling factor for positioning chapter number label (set to .525 for numbered chapters)
   \appendix
-  \specialinclude{appendices/template}{Title}{app:app-a-title-slugified}
-%  \insertblankpage
-  %\specialinclude{appendices/template-include-pdf}{Title}{app:app-b-title-slugified}
-%  \insertblankpage
-  % include back cover page
-  %\includepdf[pages=2]{cover.pdf}
+  \specialinclude{appendices/wifi-cracking}{Cracking WPA2-PSK WiFi using Aircrack-ng}{app:wifi-cracking}
 \end{document}

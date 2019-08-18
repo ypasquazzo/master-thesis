@@ -236,6 +236,15 @@ Dalvik \cite{course-embedded-device} is a Virtual Machine for mobile phones and 
 DEX (Dalvik Executable) is a binary file format, so it is compiled. We could say, that \texttt{.dex} file is for DVM something like \texttt{.class} files for JVM.
 \end{indentbox}
 
+\paragraph{WPA2-PSK password cracking} In the context of this work, it will be essential to be able to break into WPA2-PSK protected WiFi network. In this section, we present the required steps in order to perform a successful attack :
+\begin{enumerate}
+  \item Prepare the \acrshort{nic} (\textbf{monitor mode}) : The first step is to enable the monitor mode of the network card set up. That being done, it is possible sniff the network packets circulating around using some appropriate tool.
+  \item Analyze target WiFi : This will allow to analyze additional information about the targeted WiFi including the \acrshort{bssid}, the channel, the authentication mode and the \acrshort{essid}.
+  \item Capture a \textbf{4-way handshake} : Strong with this knowledge, the next step will be to capture a WPA handshake. WPA handshake occurs when connecting a device to the WiFi. The objective is to capture the exchange in order to recover the encrypted password. This means that the attacker has to capture the traffic and either wait for a device to connect to the WiFi or induce a disconnection and wait for the device to reconnect. \newline \\
+  In order to disconnect a host from the network, the attacker has to send him a deauthentication packet \cite{deauthentication}. Note that if a device is not set up to automatically reconnect, the deauthentication process may be have succeeded, but we will not get the WPA handshake until the device is connected once again.
+  \item Crack the password : Having a capture containing the handshake, the encrypted password is in our hands, inside of the generated file. All is left to do is to crack it, which in this case is possible through either \textbf{bruteforce or dictionary attack}. Depending on the speed of your CPU and the size of the dictionary, this could take a long time.
+\end{enumerate}
+
 \paragraph{Shell access via \acrshort{uart}}\label{subsec:uart-jtag} In the discipline of hardware hacking, one of the most useful ways to attack a device is using hardware-based exploitation techniques. These techniques are quite effective as most of the devices we encounter on a daily basis don’t usually have security protections build around the hardware aspect. Indeed, manufacturers often leave accessible some debug ports, more specifically \acrfull{uart} or \acrfull{jtag}. In short, these ports are used in factory to check the correct operation PCB. The \acrshort{uart} is used to communicate with the operating system. The \acrshort{jtag} is much more powerful and allows to communicate directly with the system on the chip. Unfortunately, the \acrshort{jtag} is not really standardized and requires much more time to know what is the function of each pin. However, there are cards made for this type of work and especially the JTAGulator \cite{jtagulator}.
 
 \begin{indentbox}{1cm}
@@ -396,7 +405,7 @@ With a map of all possible vulnerabilities and entry points, the pentester begin
 \end{itemize}
 \end{solutiondata}
 
-\textbf{John the Ripper} \cite{john} is a free software for breaking a password, used in particular to test the security of a password. First developed to run under UNIX-derived systems, the program now operates under fifty different platforms, such as BeOS, BSD and its derivatives, DOS, Linux, OpenVMS, Win32. John is one of the most popular password cracking software because it includes the autodetection of hash functions used to store passwords, the implementation of a large number of cracking algorithms, by the fact that it is very easily modifiable, and also that it is possible to resume an attack after a pause.
+\textbf{John the Ripper} \cite{john} is a free software for breaking a password, used in particular to test the security of a password. First developed to run under UNIX-derived systems, the program now operates under fifty different platforms, such as BSD and its derivatives, Linux, OpenVMS, Win32. John is one of the most popular password cracking software because it includes autodetection of hash functions and it implements a large number of cracking algorithms. It is possible to pause and resume an attack.
 
 \begin{solutiondata}{hydra}
 \begin{itemize}[labelsep=1cm]
@@ -418,19 +427,19 @@ With a map of all possible vulnerabilities and entry points, the pentester begin
 \end{itemize}
 \end{solutiondata}
 
-\textbf{Burp Suite} \cite{burp} is a Java based Web Penetration Testing framework. It has become an industry standard suite of tools used by information security professionals. Burp Suite helps you identify vulnerabilities and verify attack vectors that are affecting web applications. In its simplest form, Burp Suite can be classified as an Interception Proxy. While browsing their target application, a penetration tester can configure his internet browser to route traffic through the Burp Suite proxy server. Burp Suite then acts as a (sort of) “Man in The Middle” by capturing and analyzing each request to and from the target web application. Penetration testers can pause, manipulate and replay individual HTTP requests in order to analyze potential parameters or injection points. Injection points can be specified for manual as well as automated fuzzing attacks to discover potentially unintended application behaviors, crashes and error messages.
+\textbf{Burp Suite} \cite{burp} is a Java based Web Penetration Testing framework. It helps identify vulnerabilities and verify attack vectors that are affecting web applications. In its simplest form, Burp Suite can be classified as an Interception Proxy. While browsing their target application, a penetration tester can configure his internet browser to route traffic through the Burp Suite proxy server. Burp Suite then acts as a \acrfull{mitm} by capturing and analyzing each request to and from the target web application. Penetration testers can pause, manipulate and replay individual HTTP requests in order to analyze potential parameters or injection points. Injection points can be specified for manual as well as automated fuzzing attacks to discover potentially unintended application behaviors, crashes and error messages.
 
 \begin{solutiondata}{aircrack-ng}
 \begin{itemize}[labelsep=1cm]
   \item [\textbf{Type}] WiFi attacks toolkit
   \item [\textbf{Purpose}] Packet sniffing and injection, WEP encryption key recovery
-  \item [\textbf{Pros}] Focuses on different areas of WiFi security: monitoring, attacking, testing and cracking \newline All tools are command line which allows for heavy scripting
+  \item [\textbf{Pros}] Allows to monitor as well as to attack WiFi networks \newline All tools are command line which allows for heavy scripting
   \item [\textbf{Used}] Yes
 \end{itemize}
 \end{solutiondata}
 
 \textbf{Aircrack-ng} \cite{aircrack-ng} is a complete suite of tools to assess WiFi network security. It focuses on different areas of WiFi security :
-\begin{itemize}[itemsep=0.1cm,topsep=0.1cm]
+\begin{itemize}[itemsep=0.05cm,topsep=0.05cm]
   \item Monitoring : Packet capture and export of data to text files for further processing by third party tools
   \item Attacking : Replay attacks, deauthentication, fake access points and others via packet injection
   \item Testing : Checking WiFi cards and driver capabilities (capture and injection)
@@ -456,7 +465,7 @@ At some point in an assessment, it is frequent to encounter binaries we can anal
 \begin{itemize}[labelsep=1cm]
   \item [\textbf{Type}] Binary disassembler
   \item [\textbf{Purpose}] Disassemble and debug binary applications
-  \item [\textbf{Pros}] Allows the visualization of the assembly, the control flow graph, and the pseudo-code of a procedure at the same time \newline Is relatively inexpensive \newline Supports a broad range of binary architectures
+  \item [\textbf{Pros}] Allows to visualize assembly and pseudo-code and to graph the control flow \newline Is relatively inexpensive \newline Supports a broad range of binary architectures
   \item [\textbf{Used}] No
 \end{itemize}
 \end{solutiondata}

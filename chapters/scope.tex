@@ -154,7 +154,7 @@ Even if this operation takes us out of the traditional framework of a pentest, i
 The next step is to inventory the vulnerabilities on the devices. To do this, we must perform more intrusive tests than in the previous section.
 
 \begin{tip}
-First of all, it is worthwhile to mention that both drones communicate through 2.4 GHz WiFi secured with a WPA2-PSK technology. Although this technology is considered as secure, it is still possible for an attacker to crack the password, as described in Subsection \ref{subsec:hacking-techniques}. A specific module will accordingly be developed for that purpose in the future framework. Taking that into account, all the further tests will be the following tests will be carried out assuming that we have access to the WiFi network of the targeted drone.
+First of all, it is worthwhile to mention that both drones communicate through 2.4 GHz WiFi secured with a WPA2-PSK technology. Although this technology is considered as secure, it is still possible for an attacker to crack the password, as described in Subsection \ref{subsec:hacking-techniques}. A specific module will accordingly be developed for that purpose in the future framework. Taking that into account, all the further tests will be carried out assuming that we have access to the WiFi network of the targeted drone. The interested reader can see an example of WPA2 cracking in Appendix \ref{app:wifi-cracking}.
 \end{tip}
 
 \subsection{Network scanning}
@@ -336,12 +336,83 @@ There were in total 75 different commands such as :
 
 These will reveal to be extremely handy, as it will be shown in Chapter \ref{exploits}.
 
-\subsection{Traffic capture}\label{subsec:traffic-capture}
+\subsection{Traffic analysis}\label{subsec:traffic-analysis}
 
 \begin{warning}
-In order to use efficiently Aircrack-ng (see Subsection \ref{subsec:tools-and-resources}), all the following operations were carried out on the Kali Linux OS installed in a virtual machine, with the Panda 300Mbps Wireless 802.11n USB Adapter with High Gain Antenna (PAU061) which provided stable WiFi captures.
+In order to use efficiently Aircrack-ng (see Subsection \ref{subsec:tools-and-resources}), all the following operations were carried out on the Kali Linux OS installed in a virtual machine, with the Panda 300Mbps Wireless 802.11n USB Adapter with High Gain Antenna (PAU06) \cite{panda-adapter} which provided stable WiFi captures.
 \end{warning}
 
+So, the first step is to capture the WiFi traffic between the smartphone and the drone. To this end, the obvious choice was to use Aircrack-ng to capture and decrypt the packets and Wireshark to analyze them.
 
+The process used is somewhat similar to the one described in Appendix \ref{app:wifi-cracking}, but diverge at the WPA handshake capturing step. Indeed, this time around there is no need to send deauthentication packets in order to force a WPA handshake. We simply have to lauch the wifi capture and only then connect the smartphone to the WiFi, thus generating the handshake. When it is captured, an indication with the WPA handshake captured will be displayed the same way as in Appendix \ref{app:wifi-cracking} at the corresponding step.
+
+As a proof, we can open the capture with Wireshark as shown in Figure \ref{fig:traffic-analysis-wpa-handshake}, and start looking for the Open Authentication phase (\textit{Auth Request}, \textit{Auth Response}, \textit{Association Request}, \textit{Association Response}) followed by the 4-way handshake (EAPOL-Messages 1 to 4). Once the handshake is completed, both client and \acrshort{ap} have acquired the key for data encryption, so from that point onward all the data frames (not management frames, null frames) are encrypted.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{figures/traffic-analysis-wpa-handshake}
+  \caption{Capture of the 4-way handshake}
+  \label{fig:traffic-analysis-wpa-handshake}
+\end{figure}
+
+With the capture of the handshake, we can therefore decrypt the data using the network key (that in this case we already know, being "\texttt{12345678}" by default) using \texttt{airdecap}.
+
+\begin{center}
+\begin{minipage}{.75\linewidth}
+\lstset{
+  language=bash,
+  backgroundcolor=\color{lightgray},
+  showstringspaces=false,
+  basicstyle=\ttfamily\color{black},
+  commentstyle=\ttfamily\color{black},
+  keywordstyle=\ttfamily\color{blue}
+}
+\begin{lstlisting}
+root@kali:~# airdecap-ng -e C-me_8a9dd5 -p 12345678  capture-01.cap
+\end{lstlisting}
+\end{minipage}
+\end{center}
+
+\vspace{-1cm}
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=.5\linewidth]{figures/traffic-analysis-airdecap-ng}
+  \caption{Output of Airdecap-ng, showing the successful decryption}
+  \label{fig:traffic-analysis-airdecap-ng}
+\end{figure}
+
+And we can now analyze the decrypted packets in Wireshark. Notice that the IP addresses and the protocols are now correctly detected, replacing the generic 802.11 tag.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{figures/traffic-analysis-decrypted-packets}
+  \caption{Decryted traffic as seen in Wireshark}
+  \label{fig:traffic-analysis-decrypted-packets}
+\end{figure}
+
+From this point, we were able to generate the desired traffic and analyze the commands resulting. We repeated the operations several times, sending different commands to the drone at precise timings in order to identify the data transmitted. This way, we could establish which byte correspond to which command, as can reported in the table below.
+
+\begingroup
+\renewcommand*{\arraystretch}{1.3}
+\begin{center}
+\rowcolors{2}{gray!25}{white}
+  \begin{tabular}{L{6cm}L{8cm}}
+  \rowcolor{gray!50}
+  \hf{6cm}{Name} & \hf{8cm}{Bytes} \\
+  Idle &              \texttt{660700008000\textbf{e020004099}} \\
+  Take Off &          \texttt{660700008000\textbf{602001c199}} \\
+  Warning &           \texttt{660700008000\textbf{602008c899}} \\
+  Emergency Landing & \texttt{660700008000\textbf{e020024299}} \\
+  Go Down &           \texttt{660700008000\textbf{602000c099}} \\
+  Right &             \texttt{660700008000\textbf{602500c799}} \\
+  Left &              \texttt{660700008000\textbf{611c00fd99}} \\
+  Go Up &             \texttt{66070000\textbf{6c006020002c99}} \\
+  Backward &          \texttt{6607\textbf{f2818000602000b099}} \\
+  Forward &           \texttt{6607\textbf{fb7e80006020004099}} \\
+\end{tabular}
+\end{center}
+\endgroup
+
+This set of commands corresponds to the \textbf{C-me} drone. Indeed, even if we were able to apply the same methodology on the Flitt, we discoverd that the flying commands were too inconstant in order to distinguish a pattern. Each command is \textbf{repeated every 10ms}.
 
 \end{chaptercover}
