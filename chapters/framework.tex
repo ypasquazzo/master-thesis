@@ -24,7 +24,7 @@ This section succinctly presents Sploitkit, a \textit{toolkit for building Metas
 
 \textit{Sploitkit is a framework designed to quickly build CLI consoles with a style ressembling that of Metasploit. It features a clear and intuitive plugin architecture that allows to build consoles with new commands or modules but also models for their internal stores. This is another framework made according to the \acrshort{dry} philosophy.} \cite{sploitkit-docs}
 
-Briefly, this framework is built to facilitate the creation of new penetration testing consoles tailored to specific use cases, especially when these are not extensively covered in some well-known frameworks like Metasploit. It uses a popular Python package called \texttt{prompt\_toolkit} \cite{prompt-toolkit} designed to make beautiful CLI applications with, for instance, dropdown lists (for command autocompletion), menus or toolbars.
+Briefly, this framework written in Python is built to facilitate the creation of new penetration testing consoles tailored to specific use cases, especially when these are not extensively covered in some well-known frameworks like Metasploit. It uses a popular Python3-only package called \texttt{prompt\_toolkit} \cite{prompt-toolkit} designed to make beautiful CLI applications with, for instance, dropdown lists (for command autocompletion), menus or toolbars.
 
 \subsection{\acrlong{api}}
 
@@ -218,5 +218,57 @@ As shown in Listing \ref{lst:dronesploit-firmware-update}, we can simply open an
 \begin{tip}
 As a reminder, the information request (in blue) and setting change (in green) modules apply to both the Flitt and the C-me. The set of firmware update commands only applies to the C-me.
 \end{tip}
+
+\begin{summary}
+\textbf{Sploitkit}, written in Python, was recently created and provides a comprehensive framework for building terminal-based interfaces. It is designed with the \acrshort{dry} philosophy in mind and provides an \acrshort{api} that makes easy to create what are called \textit{entities}. These consist in :
+\begin{itemize}
+  \item \texttt{Console}'s : for building new console levels.
+  \item \texttt{Command}'s : for creating commands for the consoles.
+  \item \texttt{Module}'s : for making modules handling complex computation that do not fit into commands. 
+  \item \texttt{Model}'s : for tuning the data schem of the internal store (useful for collecting report information).
+\end{itemize}
+
+Above this framework, we can now build an application called \textbf{DroneSploit} that is purely focused on our use case, drone hacking. For this purpose, we retrieve the knowledge acquired in Chapters \ref{scope} and \ref{exploits}. From this, we can essentially deduce two important logics :
+\begin{enumerate}
+  \item Send specifically formatted commands to the drones \newline (applies to the Flitt but to the C-me as well)
+  \item Push a firmware update and trigger the update process \newline (only for the C-me)
+\end{enumerate}
+
+This led us to build the following \textbf{modules} :
+\begingroup
+\renewcommand*{\arraystretch}{1.3}
+\begin{center}
+\rowcolors{2}{gray!25}{white}
+  \begin{tabular}{L{5cm}C{3cm}C{3.5cm}}
+  \rowcolor{gray!50}
+  \hf{5cm}{} & \hf{3cm}{Flitt Selfie Cam} & \hf{3.5cm}{C-me Selfie Drone} \\
+  Get system information & \ding{51} & \ding{51} \\
+  Power off & \ding{51} & \ding{51} \\
+  Stop video recording & \ding{51} & \ding{51} \\
+  Change datetime & \ding{51} & \ding{51} \\
+  Change password & \ding{51} & \ding{51} \\
+  Change SSID & \ding{51} & \ding{51} \\
+  Evil firmware update & \ding{55} & \ding{51} \\
+  Denial-of-Service update & \ding{55} & \ding{51} \\
+  \end{tabular}
+\end{center}
+\endgroup
+
+It was also possible to automate some \textbf{WiFi password cracking} techniques using available open source code, to be adapted in Sploitkit modules.
+
+The resulting project can be found on GitHub. \cite{dronesploit}
+\end{summary}
+
+\begin{discussion}
+While the exploitation phase had already become exciting, this one turned out to be inspiring. It dealed with more complex, parametrizable and repeatable logics in Python so that, at the end, we could write modules for a brand new application based on Sploitkit.
+
+While creating modules, this paved the way to automating more and more possible ways of attack on a broad range of targets. Indeed, now that a basis is stated with DroneSploit, it will be relatively easy to add new modules for out-of-scope drones that are already parsed in the current literature, e.g. the Parrot AR or yet DJI Tello drones. This will be the subject of further exciting researches !
+
+For the viewing pleasure, here is a screenshot of what DroneSploit currently looks like :
+
+\includegraphics[width=\linewidth]{figures/dronesploit}
+
+To be continued !
+\end{discussion}
 
 \end{chaptercover}
