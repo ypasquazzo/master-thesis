@@ -1,10 +1,18 @@
 \begin{chaptercover}{Conclusion}%
 {\coverepigraph{``Device makers, especially consumer-focused ones, have been the Achilles' heel of IoT security. These vendors have often viewed proper security implementations as extra cost, complexity, and time- to-market burdens with an unclear payoff."}{\textsc{Maciej Kranz} \newline {\normalsize\vspace{-.3cm}Vice President of Strategic Innovation at Cisco Systems}}
-{\large \vspace{-1.5cm} \hyphenation{problem} \bigletter{}{} {\color{red} ...} \newline \\}}%
+{\large \vspace{-1.5cm} \hyphenation{problem} \bigletter{A}{t first glance}, one could assume that a small commercial drone naturally lacks security. And by definition, a connected device will always be more vulnerable than one that is not. Although we were able to exploit the devices on unplanned ways to a certain extent, this still required a consequent amount of work.  \newline \\}}%
 {conclusion}
 
 \section{Summary}
-{\color{red} ...}
+All along this thesis, we dove into the very specific field of pentesting and vulnerability assessment. This process was a formidable journey that allowed us to have a good overview of every step involved in the discipline, by applying the offensive security techniques to the context of drones.
+
+First, we got familiar with all the tools and technologies that could be of help for a pentester. This process was rather enjoyable and very instructive. The more we learned, the more we realized that the scope of cybersecurity is wide and complex.
+
+Afterwards, we dove into the specifics of drone security, limited the scope to two models of drones, and established a quick state of the art of the topic. Followed an intelligence gathering and vulnerability scanning phase that allowed us to pinpoint some vulnerabilities for each one of the devices. Strong with this knowledge we developed a process that allowed us to gain full access to the drone, and even to install a backdoor.
+
+Finally, we designed and implemented a framework from scratch, DroneSploit. It is designed to automate the exploits for which we managed to determine a proof of concept in the previous phase. The framework is designed in such a way that it mimics Metasploit, the reference toolkit for network penetration testing, with hopes that other security enthusiasts would be interested to contribute to the project.
+
+The result of this work, after considering the fact that success was no a certainty from the beginning, has proven to be rewarding.  
 
 \section{Objectives}
 Our objectives were four-fold :
@@ -33,18 +41,15 @@ Our objectives were four-fold :
   \end{enumerate}
 \end{enumerate}}
 
-\section{Matched Criteria}
-The level of fulfilment of the evaluation criteria can be assessed as follows :
-{\hyphenation{}
-\begin{enumerate}[itemsep=0.02cm,topsep=0.02cm]
-  \item {\color{red} ...}
-\end{enumerate}}
-
 \section{Future Works} \label{sec:future-works}
 DroneSploit opens some new avenues of improvement :
 {\hyphenation{}
 \begin{itemize}[itemsep=0.02cm,topsep=0.02cm]
-  \item {\color{red} ...}
+  \item \textbf{Flying control module} : using the information gathered in the Subsection \ref{subsec:traffic-analysis}, it should be possible to design a light control application in order to pilot the drone from a distance. 
+  \item \textbf{Video eavesdropping} : it might be worthwhile to try to intercept the video communication between the drone and the smartphone. If so, this functionality could be conveniently used as a nice addition to the flying control module.
+  \item \textbf{Radio-controlled drone assessment} : even though we excluded them from the scope of this work, there are a lot of commercial drones that are radio controlled. It would be worthwhile to study them as a separate project, and see there is a possible application with DroneSploit.
+  \item \textbf{Testing other drone models} : increase the number of modules available in DroneSploit by realizing a similar work with some more light commercial drones, or by adding scripts already available as resources
+  \item \textbf{Evolving to medium-size drones} :  this work focus on rather inexpensive devices. It would be worthwhile to test some bigger models, and see if more security is implemented.
 \end{itemize}}
 
 \end{chaptercover}

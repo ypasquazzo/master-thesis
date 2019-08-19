@@ -1,11 +1,11 @@
 \begin{chaptercover}{Scope}%
-{\coverepigraph{``Drones cause problems for more and more types of secure sites, whether it’s a matter of irresponsible or nefarious operators […] taking photos where you shouldn’t be taking photos or putting people on the ground at risk."}{\textsc{Nimo Shkedy} \newline {\normalsize\vspace{-.3cm}CEO of ApolloShield}}
-{\large \hyphenation{} \bigletter{}{} {\color{red} ...}\newline\\}}%
+{\coverepigraph{``Drones cause problems for more and more types of secure sites, whether it is a matter of irresponsible or nefarious operators [...] taking photos where you should not be taking photos or putting people on the ground at risk."}{\textsc{Nimo Shkedy} \newline {\normalsize\vspace{-.3cm}CEO of ApolloShield}}
+{\large \hyphenation{} \vspace{-.5cm} \bigletter{D}{rones} are becoming a problem in terms of security in public spaces. Their features can sometimes cause a risk to privacy or even to physical security. As a response, IT professionals should come with new and innovative solutions to mitigate those risks, first studying their working and discovering how to control them. \newline \\ In this section, we will first focus on the state of the art of current drone hacking possibilities, as well as limit the scope of our work. After a brief presentation of the drones that will be assessed, we will proceed to gather intelligence and search for exploitable vulnerabilities. \newline\\}}%
 {scope}
 
 Now that we have set the basics of what is penetration testing, we can move to the actual application of the concept to the drones. 
 
-The first phase of the work consists in gathering as much information as possible regarding the current state-of-the-art on drone security.
+The first phase of the work consists in gathering as much information as possible regarding the current state of the art on drone security.
 
 \section{Literature review}
 
@@ -42,12 +42,12 @@ In the case of WiFi drones, these act as the \acrfull{ap} to the remote control,
 \end{tabular}
 \end{center}
 
-This device is a good reference on how one of the most popular commercial drones totally lacks security. Security breaches are numerous, let’s review them :
+This device is a good reference on how one of the most popular commercial drones totally lacks security. Security breaches are numerous, let us review them :
 \begin{itemize}
   \item \textbf{Open FTP on port TCP/21} : Simply just connect to the IP without any username or password, and have access to the directory of the drone, where it stores the recorded videos.
   \item \textbf{Open Telnet on port TCP/23} : Once again, simply just connect to the IP without any username or password, and you are logged in. Furthermore, it's running Linux and it is a root access to the device! At this point the attacker could simply issue a shutdown and watch the drone fall to the ground.
   \item \textbf{Unencrypted communications} : A simple capture of the communication packets between the drone and the controller allows the attacker to have an easy view of the protocol. Once he has successfully analyzed the main commands, he can easily replay them -- for example using the python Scapy library -- in order to hijack the drone.
-  \item \textbf{WiFi controlled} : The drone is controlled with an app through WiFi, and by default, it isn’t even password-protected ! This allows any user running the application to control the drone. Even though a security can be enabled, called \textit{Pairing}, which will make the drone drop the packets if the MAC address sending them is not the one it is paired with. It is nonetheless easy for the attacker to spoof the source MAC on the packets.
+  \item \textbf{WiFi controlled} : The drone is controlled with an app through WiFi, and by default, it is not even password-protected ! This allows any user running the application to control the drone. Even though a security can be enabled, called \textit{Pairing}, which will make the drone drop the packets if the MAC address sending them is not the one it is paired with. It is nonetheless easy for the attacker to spoof the source MAC on the packets.
 \end{itemize}
 
 More information can be found on the subject at \cite{github-drone-hacking} as well as some investigations for improving the security at \cite{hacking-securing-ardrone2}.
@@ -129,14 +129,14 @@ Technical specifications :
   \label{fig:flitt-selfie-cam}
 \end{figure}
 
-The device can take high-quality pictures and video. Like the Flitt, it must also be unlocked in order to take off, auto-regulates its high and has an emergency landing feature in case of loss of control.
+The device can take high-quality pictures and videos. Like the Flitt, it must also be unlocked in order to take off, it auto-regulates its high and has an emergency landing feature in case of loss of control.
 
 \begin{tip}
-It is quite obvious that the interfaces are quite similar, and after further research, it turns out that the two drones are produced by the same manufacturer, i.e. Hobbico. This means that there will probably be similarities between the two devices, even though the C-me has more functionalities since it’s a little bit more expensive than the Flitt (depending on the reseller, around 80 euros  for the Flitt and 150 euros for the C-me). This will be a good occasion to compare them and see if one is more secure than the other.
+It is quite obvious that the interfaces are similar, and after further research, it turns out that the two drones are produced by the same manufacturer, i.e. Hobbico. This means that there will probably be similarities between the two devices, even though the C-me has more functionalities since it is a little bit more expensive than the Flitt (depending on the reseller, around 80 euros  for the Flitt and 150 euros for the C-me). This will be a good occasion to compare them and see if one is more secure than the other.
 \end{tip}
 
 \begin{info}
-Hobbico, Inc. was a manufacturer and distributor of hobby products including radio control airplanes, boats, cars, helicopters and drones. Unfortunately, on 2018, it was announced that Hobbico had filed for Chapter 7 bankruptcy and went into liquidation \cite{hobbico-liquidation}, and the company was later bought by Horizon Hobby \cite{horizon-hobby}. There website, hobbico.com, is no longer available online and there is no reference to any of the drones on the Horizon Hobby website meaning that there is no support anymore for them.
+Hobbico, Inc. was a manufacturer and distributor of hobby products including radio control airplanes, boats, cars, helicopters and drones. Unfortunately, on 2018, it was announced that Hobbico had filed for bankruptcy and went into liquidation \cite{hobbico-liquidation}, and the company was later bought by Horizon Hobby \cite{horizon-hobby}. There website, hobbico.com, is no longer available online and there is no reference to any of the drones on the Horizon Hobby website meaning that there is no support anymore for them.
 \end{info}
 
 \subsection{Intelligence gathering}
@@ -182,17 +182,17 @@ In order to gather information and help locate vulnerabilities, we used Nmap and
 
 The default SSID is rather revealing, and the default password is very weak. And since it has been shown that almost half (47 percent) of CIOs and IT managers have allowed \acrshort{iot} devices onto their corporate network without changing the default passwords \cite{iot-security-default-passwords}, this should be considered as a vulnerability. Note that it is possible to change and the SSID and password through the control application, and the new password must be at least 8 characters long, which is also a good information to have.
 
-The IP address is standard as the drones acts as a DHCP and logically has the first address of the network. The MAC address might be used to generate variables inside the firmware, so it’s always a nice thing to know.
+The IP address is standard as the drones acts as a DHCP and logically has the first address of the network. The MAC address might be used to generate variables inside the firmware, so it is always a nice thing to know.
 
-Then we see right away that the drone is running a Telnet server over an unencrypted channel on the default port TCP/23. Using Telnet over an unencrypted channel is not recommended as logins, passwords, and commands are transferred in cleartext. This allows a remote, man-in-the-middle attacker to eavesdrop on a Telnet session to obtain credentials or other sensitive information and to modify traffic exchanged between a client and server. If a telnet session could be established by the attacker, it might give him full access to the operating system.
+Then, we see right away that the drone is running a Telnet server over an unencrypted channel on the default port TCP/23. Using Telnet over an unencrypted channel is not recommended as logins, passwords, and commands are transferred in cleartext. This allows a remote, man-in-the-middle attacker to eavesdrop on a Telnet session to obtain credentials or other sensitive information and to modify traffic exchanged between a client and server. If a telnet session could be established by the attacker, it might give him full access to the operating system.
 
 Port TCP/554 is used to transmit the commands and the video (rtsp flag). It will be unlikely to exploit it without knowing how the communication is handled on both ends.
 
 As expected, the device runs on a Linux-based operating system, but we were not able to gather much more information about it at this point.
 
 \begin{tip}
-The drone runs on a weak authentication system by default but it can be easily patched if the user is willing to simply change the default credentials.
-Except for the open port TCP/23, the device is rather secure, no giving up easily any unnecessary information.
+By default, the drone runs on a weak authentication system but it can be easily patched if the user is willing to simply change the default credentials.
+Except for the open port TCP/23, the device is rather secure, not disclosing any unnecessary information.
 \end{tip}
 
 \paragraph{C-me Selfie Drone}
@@ -214,19 +214,19 @@ Except for the open port TCP/23, the device is rather secure, no giving up easil
 \end{center}
 \endgroup
 
-Once again, the default SSID is rather revealing, and the default password is very weak. And since it is common knowledge that most of the users don’t bother to change any of those, this should be considered as a vulnerability. Note that it is possible to change and the SSID and password through the control application, and the new password must be at least 8 characters long, which is also a good information to have.
+Once again, the default SSID is rather revealing, and the default password is very weak. And since it is common knowledge that most of the users do not bother to change any of those, this should be considered as a vulnerability. Like for the Flitt, it is possible to change the SSID and the password though the control application, with the same recquirements for the new password.
 
-The IP address is standard as the drones acts as a DHCP and logically has the first address of the network. The MAC address might be used to generate variables inside the firmware, so it’s always a nice thing to know.
+Similarly to the Flitt, the drone has a standard IP as it acts as a DHCP and logically has the first address of the network. The MAC address might be used to generate variables inside the firmware, so it is always a nice thing to know.
 
 This time around, the drone is running an FTP server accessible through the default port TCP/21. Although FTP is widely used, there are a number of vulnerabilities that should be addressed to ensure security. First of all, FTP authentication is sent as cleartext, making it easy for someone with a packet sniffer to view usernames and passwords. The developer must also design the directory structure carefully and ensure that users don't have more access than necessary. The root directory of the FTP server is where FTP clients will connect to by default, so these should not contain any confidential data or system files. In addition to this, the ability to write to directories should be limited, preventing users from uploading files to a directory that may be malicious.
 
-Port TCP/4646 is used to transmit the commands and the video (\acrshort{rtsp}). It will be unlikely to exploit it without knowing how the communication is handled on both ends.
+Port TCP/4646 is used to transmit the commands and the video (\acrshort{rtsp}). Again, it will be unlikely to exploit it without knowing how the communication is handled on both ends.
 
 As expected, the device runs on a Linux-based operating system, but we were not able to gather much more information about it at this point.
 
 \begin{tip}
-The drone runs on a weak authentication system by default but it can be easily patched if the user is willing to simply change the default credentials.
-Except for the FTP server on port TCP/21 that might contain vulnerabilities, the device is rather secure, not disclosing easily any unnecessary information.
+By default, the drone runs on a weak authentication system but it can be easily patched if the user is willing to simply change the default credentials.
+Except for the FTP server on port TCP/21 that might contain vulnerabilities, the device is rather secure, not disclosing any unnecessary information.
 \end{tip}
 
 \subsection{Reverse engineering}\label{subsec:reverse-engineering}
@@ -250,13 +250,13 @@ As already mentioned before, both drones were produced by the same manufacturer,
 While trying to decompile the applications, we faced two major problems :
 
 \begin{enumerate}
-  \item Some parts of the code couldn’t be decompiled
+  \item Some parts of the code could not be decompiled
   \item Key parts of the code were obfuscated
 \end{enumerate}
 
 \paragraph{Decompilation failures} Java is compiled into an intermediate form, JVM bytecode, which is closer (more similar) to the source than assembly. In particular, \texttt{.class} files include metadata for class names, method names, field and parameter types, etc... All a Java decompiler needs to do is look at the instructions in each method body, and turn them into the appropriate syntactic constructs.
 
-Unfortunately, sometimes it happens that some decompilers fail to reverse parts of the code, especially when anti-debugging measures were used at compilation \cite{anti-debugging}, and the only solution for that -- except coding our own decompiler which is not the intent of this work -- is to find one that does it successfully. We tried to do so with other tools but couldn’t be a hundred percent successful, so we had to work with some portion of the code remaining as shown in the figure.
+Unfortunately, sometimes it happens that some decompilers fail to reverse parts of the code, especially when anti-debugging measures were used at compilation \cite{anti-debugging}, and the only solution for that -- except coding our own decompiler which is not the intent of this work -- is to find one that does it successfully. We tried to do so with other tools but could not be a hundred percent successful, so we had to work with some portion of the code remaining as shown in the figure.
 
 \begin{figure}[H]
   \centering
@@ -282,7 +282,7 @@ From there, our objectives were threefold :
   \item Identify key commands
 \end{enumerate}
 
-\paragraph{Default credentials} Unfortunately, nothing to be found here concerning the Flitt, so it appears that the application doesn’t use the Telnet feature. Therefore, we asked ourselves why the telnet port is open on the drone ! We were more successful with the C-me, since the credentials for the FTP connection were hard-coded in the software. This means that they are similar for every drone.
+\paragraph{Default credentials} Unfortunately, nothing to be found here concerning the Flitt, so it appears that the application does not use the Telnet feature. Therefore, we asked ourselves why the telnet port is open on the drone ! We were more successful with the C-me, since the credentials for the FTP connection were hard-coded in the software. This means that they are similar for every drone.
 
 \begin{figure}[H]
   \centering
@@ -294,9 +294,9 @@ From there, our objectives were threefold :
 
 From there, a long process of following variables and trying to understand all the chain of actions that follow each other from the moment when the user clicks on a command on his smartphone and the one when the command is sent to the drone.
 
-The programming is very generic with a high level of abstraction, resulting in a high number of classes and interfaces. Combined with the obfuscation, it is almost impossible to describe the entire process which is triggered when a command is sent clearly and it wouldn’t be much informative.
+The programming is very generic with a high level of abstraction, resulting in a high number of classes and interfaces. Combined with the obfuscation, it is almost impossible to describe the entire process which is triggered when a command is sent clearly and it would not be much informative.
 
-Nevertheless, the general idea is that there is a main activity, named \texttt{H264Activity}, that corresponds to the screenshot displayed in Subsection \ref{subsec:cme-selfie-drone} and allows the user to send all the control commands from one single point in the program. This obviously makes sense: it wouldn’t be practical for the user to switch between screen in order to navigate the drone. This results in a monster class that contains more than six thousand lines, and unfortunately, a rather big part of it was not successfully decompiled.
+Nevertheless, the general idea is that there is a main activity, named \texttt{H264Activity}, that corresponds to the screenshot displayed in Subsection \ref{subsec:cme-selfie-drone} and allows the user to send all the control commands from one single point in the program. This obviously makes sense: it would not be practical for the user to switch between screen in order to navigate the drone. This results in a monster class that contains more than six thousand lines, and unfortunately, a rather big part of it was not successfully decompiled.
 
 From there, the \texttt{H264Activity} calls (through a long succession of interfaces and generic classes) the \texttt{FlyControlThread} which, as indicated by its name, creates a threat responsible to handle the control command.
 
@@ -311,9 +311,9 @@ Finally, the \texttt{FlyControlThread} transmits the command to be sent to the \
   \label{fig:apk-class-interactions}
 \end{figure}
 
-It was unfortunately impossible to forge commands based on the information gathered from this code since the \acrshort{crc} computation used too many variables, some of them coming from parts of the code that weren’t successfully decompiled. We finally stopped to try to do it since it was becoming too time-consuming compared to what could be achieved.
+It was unfortunately impossible to forge commands based on the information gathered from this code since the \acrshort{crc} computation used too many variables, some of them coming from parts of the code that were not successfully decompiled. We finally stopped to try to do it since it was becoming too time-consuming compared to what could be achieved.
 
-\paragraph{Key control commands} By looking deep into the source code, we were also able to identify a class Config that contained only one long enumeration with what look like a list of configuration commands that can possibly be sent to the drone.
+\paragraph{Key control commands} By looking deep into the source code, we were also able to identify a class Config that contained only one long enumeration, with what looks like a list of configuration commands that can possibly be sent to the drone.
 
 There were in total 75 different commands such as :
 
@@ -355,7 +355,7 @@ As a proof, we can open the capture with Wireshark as shown in Figure \ref{fig:t
   \label{fig:traffic-analysis-wpa-handshake}
 \end{figure}
 
-With the capture of the handshake, we can therefore decrypt the data using the network key (that in this case we already know, being "\texttt{12345678}" by default) using \texttt{airdecap}.
+With the capture of the handshake, we can therefore decrypt the data using the network key (being "\texttt{12345678}" by default) using \texttt{airdecap}.
 
 \begin{center}
 \begin{minipage}{.75\linewidth}
@@ -373,15 +373,14 @@ root@kali:~# airdecap-ng -e C-me_8a9dd5 -p 12345678  capture-01.cap
 \end{minipage}
 \end{center}
 
-\vspace{-1cm}
 \begin{figure}[H]
   \centering
-  \includegraphics[width=.5\linewidth]{figures/traffic-analysis-airdecap-ng}
+  \includegraphics[width=.6\linewidth]{figures/traffic-analysis-airdecap-ng}
   \caption{Output of Airdecap-ng, showing the successful decryption}
   \label{fig:traffic-analysis-airdecap-ng}
 \end{figure}
 
-And we can now analyze the decrypted packets in Wireshark. Notice that the IP addresses and the protocols are now correctly detected, replacing the generic 802.11 tag.
+Now, we can analyze the decrypted packets in Wireshark. Notice that the IP addresses and the protocols are now correctly detected, replacing the generic 802.11 tag.
 
 \begin{figure}[H]
   \centering
@@ -390,7 +389,7 @@ And we can now analyze the decrypted packets in Wireshark. Notice that the IP ad
   \label{fig:traffic-analysis-decrypted-packets}
 \end{figure}
 
-From this point, we were able to generate the desired traffic and analyze the commands resulting. We repeated the operations several times, sending different commands to the drone at precise timings in order to identify the data transmitted. This way, we could establish which byte correspond to which command, as can reported in the table below.
+From this point, we were able to generate the desired traffic and analyze the commands resulting. We repeated the operations several times, sending different commands to the drone at precise timings in order to identify the data transmitted. This way, we could establish which byte corresponds to which command, as reported in the table below.
 
 \begingroup
 \renewcommand*{\arraystretch}{1.3}
@@ -416,15 +415,15 @@ From this point, we were able to generate the desired traffic and analyze the co
 This set of commands corresponds to the \textbf{C-me} drone. Indeed, even if we were able to apply the same methodology on the Flitt, we discovered that the flying commands were too inconstant in order to distinguish a pattern. Each command is \textbf{repeated every 10ms}.
 
 \begin{summary}
-Having set the basics of what is penetration testing, the logical next step is the actual application of the concept to the drones. The first phase of the pentester’s work that consists in \textbf{gathering} as much \textbf{information} as possible on his target, starting with familiarizing with the technology in play.
+Having set the basics of what is penetration testing, the logical next step is the actual application of the concept to the drones. The first phase of pentester's work that consists in \textbf{gathering} as much \textbf{information} as possible on his target, starting with familiarizing with the technology in play.
 
 This effort allowed us to bring out that some work had already been done in regards to vulnerability assessment of drones, the most studied case being the one of the \textbf{Parrot AR Drone} \cite{github-drone-hacking} \cite{hacking-securing-ardrone2}. This allowed us to see what could be done in the field, and can serve as inspiration for later use. Nevertheless, there still lacks a convenient open-source solution for gathering and coordinating exploits.
 
-This is also the point where the drones on which the pentest will be carried out were defined. Indeed, the scope of this work will be limited to \textbf{WiFi controlled} device only, and thus only the \textbf{Flitt Selfie Cam} and the \textbf{C-me Selfie Drone} match the criteria.
+This is also the moment when the drones on which the pentest will be carried out were defined. Indeed, the scope of this work will be limited to \textbf{WiFi controlled} device only, and thus only the \textbf{Flitt Selfie Cam} and the \textbf{C-me Selfie Drone} match the criteria.
 
-After this first phase, the actual penetration test begins and proceeds with \textbf{information gathering} endeavor. It is the phase where all publicly available information related to the target is located, seeking ways that could be used to breach into the systems. The tools such as port scanners are used in order to get an understanding of the system’s target and the software that is on it.
+After this first phase, the actual penetration test begins and proceeds with \textbf{information gathering} endeavor. It is the phase where all publicly available information related to the target is located, seeking ways that could be used to breach into the systems. The tools such as port scanners are used in order to get an understanding of the system's target and the software that is on it.
 
-Using that information, it is possible to imagine what impact the different findings may have on the client and the \textbf{vulnerability analysis} part can proceed where the information found is used to locate possible vulnerabilities in the systems and process to the exploitation phase.
+Using that information, it is possible to imagine what impact the different findings may have on the client. The \textbf{vulnerability analysis} part, where the information found is used to locate possible vulnerabilities in the system, can be conducted before processing to the exploitation phase.
 
 \begingroup
 \renewcommand*{\arraystretch}{1.3}
@@ -448,6 +447,13 @@ Using that information, it is possible to imagine what impact the different find
 \end{summary}
 
 \begin{discussion}
+Internet is filled with of information and extracting relevant data can play a game changing role in many situations. At first sight, extracting information from the internet is easy, or so it seems. When performing a penetration test, it is very crucial to give the reconnaissance phase as much care as possible. Every little piece of information can be a great deal, and, many times, the information collected during the reconnaissance phase plays critical role during exploitation as well as post-exploitation part of a pentest. This will indeed reveal to make no exception in the context of this work.
+
+We started this project without having the slightest know-how on drone technology, as well as very little experience in pentesting. To be honest, the general idea was that the drones did not have much security and that it would be rather quick to assess their security.
+ 
+As it might very well be the case for some other devices, as could be , we quickly realized that the two models we were going to work with, namely the Flitt Selfie Drone and the C-me Selfie camera, were not as vulnerable as expected. We first failed to discover much information, then, by always learning about new pentesting and vulnerability assessment techniques and tools (for instance the reverse engineering of an APK), we managed to grab a good idea of the implementation of the two devices.
+
+Indeed, there was some room for exploitation, but it would no be performed without quite some effort on our part, and this turned out to be an interesting battle for us to fight our way to a root shell !
 \end{discussion}
 
 \end{chaptercover}

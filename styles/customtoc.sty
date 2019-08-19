@@ -5,6 +5,7 @@
 \RequirePackage{etoolbox}
 \RequirePackage{titlesec}
 \RequirePackage{titletoc}
+\RequirePackage{listings}
 \RequirePackage{calc}
 %\RequirePackage{tabto}
 % define main ToC depth
@@ -64,4 +65,19 @@
   \@starttoc{lof}
   \endgroup
 }
+%% reformat lol
+%\begingroup\let\newcounter\@gobble\let\setcounter\@gobbletwo
+%  \globaldefs\@ne \let\c@loldepth\@ne
+%  \newlistof{listings}{lol}{\lstlistlistingname}
+%\endgroup
+%\let\l@lstlisting\l@listings
+%\AtBeginDocument{\addtocontents{lol}{\protect\addvspace{10\p@}}}
+%%\renewcommand{\lstlistoflistings}{\listoflistings}
+%\begingroup
+%\let\newcounter\@gobble\let\setcounter\@gobbletwo
+%  \globaldefs\@ne \let\c@loldepth\@ne
+%  \newlistof{listings}{lol}{\lstlistlistingname}
+%  \newlistentry{lstlisting}{lol}{0}
+%\endgroup
+
 \makeatother

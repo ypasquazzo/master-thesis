@@ -5,7 +5,7 @@
 %       inserted when a chapter does not have an even number of pages
 %  NB: when using \insertblanpage, it will insert the page anyway ; it does NOT check the number of
 %       pages of the part to compute if the page is required or not
-\def\printversion{false}
+\def\printversion{true}
 % parameter to display appendices normally or simply the line in ToC
 %  NB: this is useful if you do not want to include the appendices into the text but you want to keep
 %       appendices lines in the ToC and also the labels for referencing
@@ -47,25 +47,35 @@
   % this part takes roman numerals page numbering
   \frontmatter
   \tableofcontents
+  \insertblankpage
   \include{parts/acronyms}
   \insertblankpage
   \listoffigures \addcontentsline{toc}{chapter}{\textbf{\listfigurename}}
+  \insertblankpage
+%  \lstlistoflistings \addcontentsline{toc}{chapter}{\textbf{List of Listings}}  %%%% ERROR
   % for the rest, page numbering is arabic
   \mainmatter
   \include{chapters/introduction}
 %  \insertblankpage
   \include{chapters/background}
+  \insertblankpage
   \include{chapters/scope}
+  \insertblankpage
   \include{chapters/exploits}
+  \insertblankpage
   \include{chapters/framework}
+  \insertblankpage
   \include{chapters/conclusion}
   \setcounter{chapter}{0}
   \addtocontents{toc}{\protect\setcounter{tocdepth}{0}} % for other parts (i.e. appendices), do not count sections, subsections, ...
   \addtocontents{ptc}{\protect\setcounter{tocdepth}{2}} % but for appendices' toc's, keep depth to 2
   %\addtocontents{toc}{\protect\newpage}
+  \insertblankpage
   \include{parts/references}
   \def\xshiftfactor{.53} % scaling factor for positioning chapter number label (set to .525 for numbered chapters)
   \appendix
+  \insertblankpage
   \specialinclude{appendices/wifi-cracking}{Cracking WPA2-PSK WiFi using Aircrack-ng}{app:wifi-cracking}
+  \insertblankpage
   \specialinclude{appendices/uart-pins}{UART pins}{app:uart-pins}
 \end{document}

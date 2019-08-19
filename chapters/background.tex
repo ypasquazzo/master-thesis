@@ -1,6 +1,6 @@
 \begin{chaptercover}{Background}%
 {\coverepigraph{``I believe that the challenges of IT security will continue to increase, even if the operating systems and applications drastically improve."}{\textsc{H. D. Moore} \newline {\normalsize\vspace{-.3cm}Cybersecurity expert, developer of Metasploit}}
-{\large \hyphenation{} \bigletter{I}{T security} is nowadays a very flourishing field with the evolution of technologies, bringing new challenges and techniques, especially when trying to break into systems. \newline \\ This chapter presents some basics about penetration testing, the ultimate science of breaking into systems, starting with defining what a penetration test is, then explaining the different test levels, methodologies and techniques as of the current state-of-the-art. It then lists a few existing tools in this field.\newline\\}}%
+{\large \hyphenation{} \bigletter{I}{t security} is nowadays a very flourishing field with the evolution of technologies, bringing new challenges and techniques, especially when trying to break into systems. \newline \\ This chapter presents some basics about penetration testing, the ultimate science of breaking into systems, starting with defining what is a penetration test, then explaining the different test levels, methodologies and techniques as of the current state of the art. If finally lists a few existing tools in the field.\newline\\}}%
 {background}
 
 \section{Terminology}
@@ -39,16 +39,16 @@ To sum it up, all vulnerabilities rely on weaknesses, but not all weaknesses ent
 \paragraph{Whitehat hacker (the {\color{forestgreen(web)} Good})} This profile pertains to the security expert and/or researcher who searches for security issues in \acrshort{is}' and whose goal is to fill the security gaps.
 
 \begin{tip}
-In the scope of this work, we act as whitehat hackers as our project aims to identify and help fix security issues on light commercial drones.
+In the scope of this work, we act as whitehat hackers as our project aims to identify and help fixing security issues on light commercial drones.
 \end{tip}
 
 \subsection{Kinds of assessment}
 
 \paragraph{Penetration Testing} \textit{... can be defined as a legal and authorized attempt to locate and successfully exploit computer systems for the purpose of making those systems more secure.} \cite{basics-of-hacking-and-pt} The main idea is to find security issues just like an attacker would do so that these can be mitigated before a real attack.
 
-\paragraph{\acrfull{va}} This kind of security assessment is a system review aimed to find potential security issues, generally performed in a live environment. The important point here is that it stops after having found vulnerabilities and reported them for mitigations, it does not assess their exploitability yet. At some point, when reported vulnerabilities are too numerous, it could be helpful to focus attention on these that could be effectively exploited for breaking into the related \acrshort{is} and direct the available resources on fixing these issues instead of trying to fix all the reported vulnerabilities (whose most of them are often informational or very difficult to exploit in practice). This is what distinguishes a \acrlong{va} from a \acrlong{pt}.
+\paragraph{\acrfull{va}} This kind of security assessment is a system review aimed to find potential security issues, generally performed in a live environment. The important point here is that it stops after having found vulnerabilities and having reported them for mitigations. It does not assess their exploitability yet. At some point, when reported vulnerabilities are too numerous, it could be helpful to focus attention on these that could be effectively exploited for breaking into the related \acrshort{is} and direct the available resources on fixing these issues instead of trying to fix all the reported vulnerabilities (whose most of them are often informational or very difficult to exploit in practice). This is what distinguishes a \acrlong{va} from a \acrlong{pt}.
 
-\paragraph{\acrfull{pt}} This kind of security assessment encompasses the \acrshort{va} but goes far beyond, demanding more resources (in time and efforts) to check for the exploitability of the found vulnerabilities in order to determine with more precision their impact on \acrshort{is}' environment. The outcome of such a test is a \textbf{\acrfull{poc} attack} that demonstrate the exploitability. This can lead to the discovery of security holes opening the way to pervasive actions like listed hereafter. The most important point here, and what distinguishes a penetration tester from a real attacker, is the \textbf{permission} (notwithstanding the difference in motivation).
+\paragraph{\acrfull{pt}} This kind of security assessment encompasses the \acrshort{va} but goes far beyond, demanding more resources (in time and efforts) to check for the exploitability of the found vulnerabilities in order to determine with more precision their impact on \acrshort{is}' environment. The outcome of such a test is a \textbf{\acrfull{poc} attack} that demonstrates the exploitability. This can lead to the discovery of security holes opening the way to pervasive actions like listed hereafter. The most important point here, and what distinguishes a penetration tester from a real attacker, is the \textbf{permission} (notwithstanding the difference in motivation).
 
 Multiple effects can result from the exploitability of a vulnerability :
 \begin{itemize}[itemsep=0.1cm,topsep=0.1cm]
@@ -59,9 +59,9 @@ Multiple effects can result from the exploitability of a vulnerability :
 
 Ultimately, the main purpose of these kinds of security assessments is to report on security holes to the management, to provide mitigations and recommendations and to prioritize them in order to prevent real attacks from being led.
 
-\paragraph{Red teaming} This notion pertains to simulating what we could begin to describe as an \acrfull{apt}. In this context, the \acrshort{pt} is extended over a much larger period (several months instead of a few days or weeks). This kind of scenario is more rare, as it demands far more resources to be carried out. However, this reflects even more closely the context of an external attack in which hackers increasingly tend to take their time to study the targeted \acrshort{is} and also to hide their presence.
+\paragraph{Red teaming} This notion pertains to simulating what could be roughly described as an \acrfull{apt}. In this context, the \acrshort{pt} is extended over a much larger period (several months instead of a few days or weeks). This kind of scenario is more rare, as it demands far more resources to be carried out. However, this reflects even more closely the context of an external attack in which hackers increasingly tend to take their time to study the targeted \acrshort{is} and also to hide their presence.
 
-\paragraph{Vulnerability hunting} This notion also refers to system or software review, but generally on a product outside its operating environment. It pertains to studying an asset in order to demonstrate its potential security flaws and help the manufacturer fix them before or yet after its deployment on the market.
+\paragraph{Vulnerability hunting} This notion also refers to system or software review, but generally on a product outside its operating environment. It pertains to studying an asset in order to demonstrate its potential security flaws and help the manufacturer to fix them before or even after its deployment on the market.
 
 \begin{tip} \hyphenation{manufacturers}
 In our case, we use the penetration testing approach and its related techniques to achieve vulnerability hunting on multiple drone models from various manufacturers.
@@ -74,7 +74,7 @@ A penetration test can take a different form according to the requirements of th
 \begin{figure}[H]
   \centering
   \includegraphics[width=.7\linewidth]{figures/pentest-types}
-  \caption{Types of penetration test in function of the prior degree of knowledge}
+  \caption{Types of penetration tests in function of the prior degree of knowledge}
   \label{fig:pentest-types}
 \end{figure}
 
@@ -87,27 +87,27 @@ In the \textit{Blackbox} context, the pentester really puts himself in the shoes
 Reasons for blackbox penetration testing :
 
 \begin{itemize} \vspace{-.2cm}
-  \item[\checkmark] Simulates the majority of potential attacks facing your organization
-  \item[\checkmark] Helps to identify where your systems are weakest
-  \item[\checkmark] Provides an objective, outsider’s view of your systems
+  \item[\checkmark] Simulate the majority of potential attacks facing your organization
+  \item[\checkmark] Help to identify where your systems are weakest
+  \item[\checkmark] Provide an objective, outsider's view of your systems
 \end{itemize}
 
 \subsection{Whitebox}
 
 In systems theory, a whitebox, is a module of a system that can be expected to work internally because we know the operating characteristics of all elements that compose it. In other words, a whitebox is a module that has as few blackboxes as possible.
 
-In this case, the pentester works in close collaboration with the DSI, the RSSI and the technical team of the information system. The goal is to obtain 100\% information on the information system and to support the CIO in the detection of vulnerability. One of the advantages of the whitebox mode is that it is then possible to detect security flaws in a wider way and that the blackbox mode would not have made it possible to detect, for example if the pentester had not reached a certain stage of the intrusion. In addition, the whitebox mode is more easily integrated into the \acrshort{is} lifecycle, sometimes at each stage of its evolution.
+In this case, the pentester works in close collaboration with the director of \acrshort{is}' and the technical staff of these systems. The goal is to obtain 100\% of the information on the information system and to support the CIO in the detection of vulnerability. One of the advantages of the whitebox mode is that it is then possible to detect security flaws in a wider way. It also allows to detect more advanced flaws than in a blackbox mode, i.e. if the pentester had not reached a certain stage of intrusion. In addition, the whitebox mode is more easily integrated into the \acrshort{is} lifecycle, sometimes at each stage of its evolution.
 
 Reasons for whitebox penetration testing:
 \begin{itemize} \vspace{-.2cm}
-  \item[\checkmark] Efficient use of ethical hacker’s time
+  \item[\checkmark] Efficient use of ethical hacker's time
   \item[\checkmark] Provides “full disclosure” insights
   \item[\checkmark] Allows for objective scrutiny of internal systems
 \end{itemize}
 
 \subsection{Graybox}
 
-An engagement that allows a higher level of access and increased internal knowledge falls into the category of graybox testing. Comparatively, a blackbox tester begins the engagement from a strict external viewpoint attempting to get in, while the graybox tester has already been granted some internal access and knowledge that may come in the form of lower-level credentials, application logic flow charts, or network infrastructure maps. Graybox testing can simulate an attacker that has already penetrated the perimeter and has some form of internal access to the network.
+An engagement that allows a higher level of access and increased internal knowledge falls into the category of graybox testing. Comparatively to a blackbox tester who attempts to get it from a strict external point of view, the graybox tester has already been granted some internal access and knowledge that may come in the form of lower-level credentials, application logic flow charts, or network infrastructure maps. Graybox testing can simulate an attacker that has already penetrated the perimeter and has some form of internal access to the network.
 
 By providing some form of background to the security consultants undertaking the assessment, it helps to create a more efficient and streamlined approach. This saves on the time (and money) spent on the reconnaissance phase, allowing the consultants to focus their efforts on exploiting potential vulnerabilities in higher-risk systems rather than attempting to discover where these systems may be found.
 
@@ -134,14 +134,14 @@ After having introduced what is a pentest, let us look at a popular methodology 
 \textbf{But why do penetration testers need to follow a methodology ?}
 \begin{itemize}
   \item The world is changing fast, security techniques and technologies are constantly evolving. Faced with this, \textbf{structure} is needed. The methodologies allow to provide a fixed framework on the progress of a penetration test.
-  \item Faced with an \acrshort{is} or many, a pentester has to look into each system, service, port or IP which can hide a vulnerability. This can be cumbersome and error-prone. A framed and fixed methodology then makes it possible to follow a \textbf{canvas} and thus to organize the penetration test so that it is as \textbf{complete} as possible and \textbf{repeatable}.
+  \item Faced with an \acrshort{is} or many, a pentester has to look into each system, service, port or IP which can hide a vulnerability. This can be cumbersome and error-prone. A framed and fixed methodology then allows to follow a \textbf{canvas} and thus to organize the penetration test so that it is as \textbf{complete} as possible and \textbf{repeatable}.
   \item In the professional environment, \textbf{team working} is essential. A methodology known by several pentesters will facilitate the work within the team. Also, the report generated will be made following a known frame.
 \end{itemize}
 \end{question}
 
-First and foremost, a methodology will make it possible to not forget anything during the penetration test and to make sure that it is as complete as possible. During said pentest, the methodology acts as a way to follow, facilitating the organization of the pentester.
+First and foremost, a methodology will make it possible to not forget anything during the penetration test and to make sure that it is as complete as possible. During the pentest, the methodology acts as a way to follow, facilitating the organization of the pentester.
 
-\paragraph{\acrfull{ptes} \cite{ptes}} Let's take a look at this popular methodology that is often used by most pentesters. Mostly, this methodology is used as a basis in the pentest teams who customize them with their own methods, tools and techniques, which is what will make the difference between one team of pentest and another. The experience of the field is then added to the theory of the methodology. It should also be noted that each pentest follows a path of its own according to the \acrshort{is} to be tested. This methodology follows the steps as depicted in \ref{fig:ptes-process} and explained hereafter.
+\paragraph{\acrfull{ptes} \cite{ptes}} Let's take a look at this popular methodology that is often used by most pentesters. Mostly, this methodology is used as a basis in the pentest teams who customize them with their own methods, tools and techniques, which will make the difference between one team of pentest and another. The experience of the field is then added to the theory of the methodology. It should also be noted that each pentest follows a path of its own according to the \acrshort{is} to be tested. This methodology follows the steps as depicted in \ref{fig:ptes-process} and explained hereafter.
 
 \begin{figure}[H]
   \centering
@@ -151,13 +151,13 @@ First and foremost, a methodology will make it possible to not forget anything d
 \end{figure}
 
 \begin{enumerate}
-  \item \textbf{Pre-engagement Interactions} : Obviously, each intrusion test starts with a negotiation, an understanding of customer needs and finally a contractualization that puts all of this into paper form. The establishment of the contract is an opportunity for the company requesting the security test to specify several things concerning the scope of the intrusion test to be performed. In terms of time (days, weeks, months), in terms of technologies, in geographical terms (range of IP to test and not to test for example). Also, this is an opportunity to specify the type of test to be provided: can testers set up DoS attack phases ? Will they have to go to the end of the operation even if they have to open sensitive documents ? The contract also aims to establish a legal link and a protection for the pentester that could fall on sensitive documents, but also to negotiate and inform the companies collaborating with the customer (ISP, host, business application, etc.).
-  \item \textbf{Intelligence Gathering} : The second step is "Intelligence Gathering" or "Information Gathering". Understandably the collection of information. Here, the pentester will try to list as much information about the \acrshort{is} tested as possible, and this via several methods. The goal is therefore to map the attack surface from the starting position, to obtain information on the services, servers and active elements used, as well as their version and security systems in place (VPN, Firewall, Anti-Ddos, DMZ, etc.). The Intelligence Gathering part can be done passively (without direct interaction with the \acrshort{is} of the target) and / or actively (by going to communicate with the targeted servers). This also includes the concepts of OSINT (Open Source Intelligence) and HUMINT (Human Intelligence, understand social engineering).
-  \item \textbf{Threat Modeling} : The third step is the Threat Modeling, in which the pentester is going to look for a list of threats for the company. What can the company have to deal with ? He will try to evaluate what is critical for the company (e.g. its manufacturing secret), to establish the potential impact of the loss of this secret and then see what vulnerabilities can lead to a loss of manufacturing secrecy. Also, one can go through an analysis phase in terms of security of competitors / similar companies. Have they been compromised recently ? What was the impact of the attack ? An analysis of the company's process and its human assets can also be performed as well as an analysis of the \acrshort{is}: is there an encryption mechanism for salespeople communicating with the inside of the \acrshort{is} on the business application ? Is a VPN in place for the remote administration of the \acrshort{is} ? The model should be clearly documented, and be delivered as part of the final report as the findings in the report will reference the threat model in order to create a more accurate relevance and risk score that is specific to the organization (rather than a generic technical one).
-  \item \textbf{Vulnerability Analysis} : The information collected previously will be used to analyze the systems, staff and processes in place to search for exploitable vulnerabilities. Thus, it goes through a manual and / or automatic search process of vulnerabilities. The objective here is to draw up a list of what could be exploitable and build a "tree of attack", i.e. a continuation of attack that can lead to the discovery of other vulnerabilities, tracing a path towards the takeover of the \acrshort{is} or the possibility of establishing acts of espionage or sabotage. This phase is systematically based on research on the bases of public exploits, verification of the patches of the scanned systems and the use of scans tools (Ex: Nessus, OpenVAS, Nmap, etc.). If the vulnerability analysis phase was properly completed, a high value target list should have been complied. Ultimately the attack vector should take into consideration the success probability and highest impact on the organization.
-  \item \textbf{Exploitation} : The fifth stage is often the most awaited of the pentesters, it is the moment to go to the attack: the exploitation. Here, he will try to test the vulnerabilities found in the previous phases and to advance in the intrusion of the information system. He will also try to test the barriers and security systems in place (evasion of an IDS, bypassing a security, bypass authentication). This will be followed by a validation process of the potential vulnerabilities found. It is important here to find ways to exploit vulnerabilities and also security systems. If the pentester advances in the \acrshort{is}, he may have to go back to step 4 in order to perform a new vulnerability analysis in the new zone (let's say if he manages to switch from the DMZ to the LAN). Note that in the pre-engagement interaction phase with the customer, a clear definition of the overall objectives of the penetration test should have been communicated. In the case of the exploitation phase, the biggest challenge is identifying the least path of resistance into the organization without detection and having the most impact on the organizations ability to generate revenue. By performing the prior phases properly, a clear understanding of how the organization functions and makes money should be relatively understood. From the exploitation phase and into the post-exploitation phase, the attack vectors should rely solely on the mission of circumventing security controls in order to represent how the organization can suffer substantial losses through a targeted attack against the organization.
-  \item \textbf{Post Exploitation} : The purpose of the Post-Exploitation phase is to determine the value of the machine compromised and to maintain control of the machine for later use. This step has several interesting phases, like a real attacker, the pentester will have to erase his tracks so that these actions are as discreet as possible (clearing logs for example). Also, it will have to seek to establish a sustainable way in the information system by inserting backdoors, by creating a VPN account or by installing a malware / rootkit. The post-exploitation phase is also the last technical phase of the intrusion test, so it is time to target the information to be stolen (also referred as “Pillaging”), the interesting people of the company (trapping a high placed target for example). The idea here is to really show what mischief an attacker could accomplish: espionage, sabotage, exfiltration of data, deployment of a botnet, decommissioning part of the \acrshort{is}, etc.
-  \item \textbf{Reporting} : The Pentest approach described in the PTES ends with the reporting phase, and this is the most important phase because it consists in exposing the progress of the intrusion test and its fruits to the client. Reporting will be both technical and non-technical. The pentester will then detail the information retrieved during the Intelligence Gathering phase, expose the vulnerabilities listed and exploited and describe the misdeeds that have / could have been perpetrated in the Post-Exploitation phase. This phase is often oral but is always accompanied by a written deliverable containing all this information. Finally, the pentest team is often called upon to draw up a "Remediation Roadmap", i.e. a list of countermeasures, corrections and protections to be put in place so that the company has tracks to start on following the securing of his \acrshort{is}.
+  \item \textbf{Pre-engagement Interactions} : Obviously, each intrusion test starts with a negotiation, an understanding of customer needs and finally a contractualization that puts all of this into paper form. The establishment of the contract is an opportunity for the company requesting the security test to specify several things concerning the scope of the intrusion test to be performed. In terms of time (days, weeks, months), in terms of technologies, in geographical terms (range of IP to test and not to test for example). Also, this is an opportunity to specify the type of test to be provided: can testers set up denial-of-service attack phases ? Will they have to go to the end of the operation even if they have to open sensitive documents ? The contract also aims to establish a legal link and a protection for the pentester that could fall on sensitive documents, but also to negotiate and inform the companies collaborating with the customer (ISP, host, business application, etc.).
+  \item \textbf{Intelligence Gathering} : The second step is "Intelligence Gathering" or "Information Gathering". Understandably the collection of information. Here, the pentester will try to list as much information about the \acrshort{is} tested as possible, and this via several methods. The goal is therefore to map the attack surface from the starting position, to obtain information on the services, servers and active elements used, as well as their version and security systems in place (VPN, Firewall, Anti-Ddos, DMZ, etc.). The Intelligence Gathering part can be done passively (without direct interaction with the \acrshort{is} of the target) and / or actively (by going to communicate with the targeted servers). This also includes the concepts of \acrfull{osint}.
+  \item \textbf{Threat Modeling} : The third step is the Threat Modeling, in which the pentester is going to look for a list of threats for the company. What can the company have to deal with ? He will try to evaluate what is critical for the company (e.g. its manufacturing secret), to establish the potential impact of the loss of this secret and then see what vulnerabilities can lead to a loss of manufacturing secrecy. Also, one can go through an analysis phase in terms of security of competitors / similar companies. Have they been compromised recently ? What was the impact of the attack ? An analysis of the company's process and its human assets can also be performed as well as an analysis of the \acrshort{is}: is there an encryption mechanism for salespeople communicating with the inside of the \acrshort{is} on the business application ? Is a VPN in place for the remote administration of the \acrshort{is} ? The model should be clearly documented, and be delivered as part of the final report. Indeed, the findings in the report will reference the threat model in order to create a more accurate relevance and risk score that is specific to the organization (rather than a generic technical one).
+  \item \textbf{Vulnerability Analysis} : The information collected previously will be used to analyze the systems, staff and processes in place to search for exploitable vulnerabilities. Thus, it goes through a manual and / or automatic search process of vulnerabilities. The objective here is to draw up a list of what could be exploitable and build a "tree of attack", i.e. a continuation of attack that can lead to the discovery of other vulnerabilities, tracing a path towards the takeover of the \acrshort{is} or the possibility of establishing acts of espionage or sabotage. This phase is systematically based on research on the bases of public exploits, verification of the patches of the scanned systems and the use of scans tools (Ex: Nessus, OpenVAS, Nmap, etc.). If the vulnerability analysis phase was properly completed, a high value target list should have been complied. Ultimately the attack vector should take into consideration the probability of success and the potentially highest impact on the organization.
+  \item \textbf{Exploitation} : The fifth stage is often the most awaited of the pentesters, it is the moment to go to the attack: the exploitation. Here, they will try to test the vulnerabilities found in the previous phases and to advance in the intrusion of the information system. They will also try to test the barriers and security systems in place (evasion of an IDS, bypassing a security, bypass authentication). This will be followed by a validation process of the potential vulnerabilities found. It is important to find ways to exploit vulnerabilities and also security systems. If the pentester advances in the \acrshort{is}, they may have to go back to step 4 in order to perform a new vulnerability analysis in the new zone (let's say if he manages to switch from the DMZ to the LAN). Note that in the pre-engagement interaction phase with the customer, a clear definition of the overall objectives of the penetration test should have been communicated. In the case of the exploitation phase, the biggest challenge is identifying the least path of resistance into the organization without detection and having the most impact on the organizations ability to generate revenue. By performing the prior phases properly, a clear understanding of how the organization functions and makes money should be relatively understood. From the exploitation phase and into the post-exploitation phase, the attack vectors should rely solely on the mission of circumventing security controls in order to represent how the organization can suffer substantial losses through a targeted attack.
+  \item \textbf{Post Exploitation} : The purpose of the Post-Exploitation phase is to determine the value of the compromised machine and to maintain its control for later use. This step has several interesting phases, like a real attacker, the pentester will have to erase his tracks so that these actions are as discreet as possible (clearing logs for example). Also, it will have to seek to establish a sustainable way in the information system by inserting backdoors, by creating a VPN account or by installing a malware / rootkit. The post-exploitation phase is also the last technical phase of the intrusion test, so it is time to target the information to be stolen (also referred as “Pillaging”), the interesting people of the company (trapping a high placed target for example). The idea here is to really show what mischief an attacker could accomplish: espionage, sabotage, exfiltration of data, deployment of a botnet, decommissioning part of the \acrshort{is}, etc.
+  \item \textbf{Reporting} : The pentest approach described in the \acrshort{ptes} ends with the reporting phase. It is the most important phase because it consists in exposing the progress and results of the intrusion test to the client. Reporting will be both technical and non-technical. The pentester will then detail the information retrieved during the Intelligence Gathering phase, expose the vulnerabilities listed and exploited and describe the misdeeds that have / could have been perpetrated in the Post-Exploitation phase. This phase is often oral but is always accompanied by a written deliverable containing all this information. Finally, the pentest team is often called upon to draw up a "Remediation Roadmap", i.e. a list of countermeasures, corrections and protections to be set up so that the company has tracks to start on following the securing of his \acrshort{is}.
 \end{enumerate}
 
 \subsection{Related disciplines}
@@ -174,13 +174,13 @@ Some well-known \acrshort{iot}-related wireless technologies with their specific
   \label{fig:wireless-technologies}
 \end{figure}
 
-\paragraph{Reverse engineering} This is the activity of studying an object to determine its internal function or manufacturing method. It is a common hacking technique since It can be used to understand in detail how a software works, allow bypassing software protections, and ultimately, lead to vulnerabilities. Note that it is common to encounter, when reverse engineering a software, some kind of code obfuscation \cite{code-obfuscation} or anti-debugging measure to prevent it from being easily reversed \cite{anti-debugging}.
+\paragraph{Reverse engineering} is the activity of studying an object to determine its internal function or manufacturing method. It is a common hacking technique since it can be used to understand in detail how a software works, allow bypassing software protections, and ultimately, lead to vulnerabilities. Note that it is common to encounter, when reverse engineering a software, some kind of code obfuscation \cite{code-obfuscation} or anti-debugging measure to prevent it from being easily reversed \cite{anti-debugging}.
 
 \begin{indentbox}{1cm}
-\textbf{Obfuscation} is a technique by which code is rendered unintelligible to a human being. The program obtained from the obfuscated code remains perfectly executable and has the same functionality as a "clean" code.  The effectiveness of obfuscation is measured by the deobfuscator's programming effort, execution time, and resource levels necessary for the deobfuscator to produce readable source code. Thus, the challenge of obfuscation is similar to that of encryption: it is a question of producing a sufficiently obfuscated code to make any attempt of analysis useless because of the incredibly long computation times and the complexity of the treatments to realize. But the technological evolution is such that computer computing capabilities evolve rapidly, the duration of protection is short.
+\textbf{Obfuscation} is a technique by which code is rendered unintelligible to a human being. The program obtained from the obfuscated code remains perfectly executable and has the same functionality as a "clean" code.  The effectiveness of obfuscation is measured by the deobfuscator's programming effort, execution time, and the level of resources necessary for the deobfuscator to produce readable source code. Thus, the challenge of obfuscation is similar to that of encryption: produce a sufficiently obfuscated code to make any attempt of analysis useless because of the incredibly long computation times and the complexity of the treatments to realize. But the technological evolution is such that computer computing capabilities evolve rapidly and that the duration of protection is short.
 \end{indentbox}
 
-\paragraph{Hardware hacking} This is the activity of patching or replacing pieces of electronics in a hardware to make it perform other operations than it was initially intended for. It can be useful to study a hardware for potential vulnerabilities or to reverse-engineer its working. More specific details are available about a technique in this field in Subsection \ref{subsec:uart-jtag}.
+\paragraph{Hardware hacking} is the activity of patching or replacing pieces of electronics in a hardware to make it perform other operations than it was initially intended for. It can be useful to study a hardware for potential vulnerabilities or to reverse-engineer its working. More specific details are available about a technique in this field in Subsection \ref{subsec:uart-jtag}.
 
 
 \subsection{Hacking techniques}\label{subsec:hacking-techniques}
@@ -195,32 +195,32 @@ The objectives of such an action are manifold:
   \item Test the strength of a password
 \end{itemize}
 
-There are many techniques that have been developed to that end, each having advantages and limitations. The attacker thus has to adapt to each situation.
+Many techniques have been developed to that end, each having advantages and limitations. The attacker thus has to adapt to each situation.
 
 \textbf{Brute forcing} a password consists in testing one by one all possible combinations of characters. The scope of the attack has to be fixed at the beginning (length, lowercase, capital letters, numbers ...). This is the most naïve approach and will always succeed, but possibly in an unreasonable time depending on the complexity of the password.
 
 Using a \textbf{dictionary}, which is nothing but a file (often in text format) that contains hundreds of thousands, or millions of predefined passwords. In order to test these passwords, the hacker uses automated software that passes them one by one. This operation allows to speed up the process compared the bruteforce approach as it drastically reduces the search space but may not always succeed.
 
 \begin{info}
-One of the most popular lists of passwords is \texttt{rockyou.txt}. Back in 2009, a company named RockYou was hacked \cite{rockyou-hack}. This wouldn't have been too much of a problem if they hadn't stored all of their passwords unencrypted, in plain text for an attacker to see. They downloaded a list of all the passwords and made it publicly available. The list contains 14,341,564 unique passwords, used in 32,603,388 accounts. Kali Linux provides this dictionary file as part of its standard installation.
+One of the most popular lists of passwords is \texttt{rockyou.txt}. Back in 2009, a company named RockYou was hacked \cite{rockyou-hack}. This would not have been too much of a problem if they had not stored all of their passwords unencrypted, in plain text for an attacker to see. The hackers downloaded a list of all the passwords and made it publicly available. The list contains 14,341,564 unique passwords, used in 32,603,388 accounts. Kali Linux provides this dictionary file as part of its standard installation.
 \end{info}
 
 For the reference, other techniques may allow an attacker to retrieve a password without having to crack anything, namely \textbf{social engineering}, \textbf{phishing} and \textbf{sniffing}.
 
-Password attacks are often distinguished as offline or online ;
+Password attacks are often distinguished as offline or online :
 \begin{itemize}
   \item In \textbf{offline attacks}, a hash or an encrypted version of the password could be retrieved and the clear text value is to be obtained out of the live environment.
   \item In \textbf{online attacks}, the attacker tries password attempts on the live authentication system.
 \end{itemize}
 \end{indentbox}
 
-\paragraph{Android application reversing} Most of \acrshort{iot} devices can be controlled through a smartphone, usually running on IOS or Android. In the context in this work, we will try to reverse engineer the APK’s that allows drone control.
+\paragraph{Android application reversing} Most of \acrshort{iot} devices can be controlled through a smartphone, usually running on IOS or Android. In the context in this work, we will try to reverse engineer the APK's that allows drone control.
 
 \begin{indentbox}{1cm}
 \begin{tabular}{C{.3\linewidth}m{.66\linewidth}}
   \includegraphics[width=.35\textwidth]{figures/apk-file-structure}
    &
-  APK is the file format designed for distributing Android application on its platform. It has some similarities with the JAR format. It is actually a simple ZIP archive, with pre-defined specific structure and contains notably :
+  APK is the file format designed for distributing Android application on its platform. It has some similarities with the JAR format. It is actually a simple ZIP archive, with a pre-defined structure and contain notably :
   \begin{itemize}
     \item \texttt{res} :  resources not compiled in \texttt{ressources.arsc}
     \item \texttt{META-INF} : security related information (manifest, certificates)
@@ -231,34 +231,34 @@ Password attacks are often distinguished as offline or online ;
   \\
 \end{tabular}
 
-Dalvik \cite{course-embedded-device} is a Virtual Machine for mobile phones and tablets, which is embedded in the Android operating system. DVM is intended to allow the simultaneous execution of several applications on a device of low capacity (little memory space and little computing power) thanks to a register-based architecture. On a register machine, as opposed to a stack-based machine such as the \acrshort{jvm}, the low-level instructions directly contain the addresses of the source and destination registers, reducing the number of low-level instructions for manipulating the data.
+Dalvik \cite{course-embedded-device} is a Virtual Machine (DVM) for mobile phones and tablets, which is embedded in the Android operating system. DVM allows the simultaneous execution of several applications on a device of low capacity (little memory space and little computing power) thanks to a register-based architecture. On a register machine, as opposed to a stack-based machine such as the \acrshort{jvm}, the low-level instructions directly contain the addresses of the source and destination registers, reducing the number of low-level instructions for manipulating the data.
 
 DEX (Dalvik Executable) is a binary file format, so it is compiled. We could say, that \texttt{.dex} file is for DVM something like \texttt{.class} files for \acrshort{jvm}.
 \end{indentbox}
 
 \paragraph{WPA2-PSK password cracking} In the context of this work, it will be essential to be able to break into WPA2-PSK protected WiFi network. In this section, we present the required steps in order to perform a successful attack :
 \begin{enumerate}
-  \item Prepare the \acrshort{nic} (\textbf{monitor mode}) : The first step is to enable the monitor mode of the network card set up. That being done, it is possible sniff the network packets circulating around using some appropriate tool.
-  \item Analyze target WiFi : This will allow to analyze additional information about the targeted WiFi including the \acrshort{bssid}, the channel, the authentication mode and the \acrshort{essid}.
-  \item Capture a \textbf{4-way handshake} : Strong with this knowledge, the next step will be to capture a WPA handshake. WPA handshake occurs when connecting a device to the WiFi. The objective is to capture the exchange in order to recover the encrypted password. This means that the attacker has to capture the traffic and either wait for a device to connect to the WiFi or induce a disconnection and wait for the device to reconnect. \newline \\
-  In order to disconnect a host from the network, the attacker has to send him a deauthentication packet \cite{deauthentication}. Note that if a device is not set up to automatically reconnect, the deauthentication process may be have succeeded, but we will not get the WPA handshake until the device is connected once again.
-  \item Crack the password : Having a capture containing the handshake, the encrypted password is in our hands, inside of the generated file. All is left to do is to crack it, which in this case is possible through either \textbf{bruteforce or dictionary attack}. Depending on the speed of your CPU and the size of the dictionary, this could take a long time.
+  \item Prepare the \acrshort{nic} (\textbf{monitor mode}) : the first step is to enable the monitor mode of the network card set up. It is possible to sniff the network packets circulating around using some appropriate tools.
+  \item Analyze target WiFi : this will allow to analyze additional information about the targeted WiFi including the \acrshort{bssid}, the channel, the authentication mode and the \acrshort{essid}.
+  \item Capture a \textbf{4-way handshake} : the next step will be to capture a WPA handshake. WPA handshake occurs when connecting a device to the WiFi. The objective is to capture the exchange in order to recover the encrypted password. This means that the attacker has to capture the traffic and either wait for a device to connect to the WiFi or induce a disconnection and wait for the device to reconnect. \newline \\
+  In order to disconnect a host from the network, the attacker has to send him a deauthentication packet \cite{deauthentication}. Note that if a device is not set up to automatically reconnect, the deauthentication process may have succeeded, but we will not get the WPA handshake until the device connects once again.
+  \item Crack the password : having a capture containing the handshake, the encrypted password is in our hands within the generated file. It still remains to crack it which, in this case, is possible through either \textbf{bruteforce or dictionary attack}. Depending on the speed of your CPU and the size of the dictionary, this could take a long time.
 \end{enumerate}
 
-\paragraph{Shell access via \acrshort{uart}}\label{subsec:uart-jtag} In the discipline of hardware hacking, one of the most useful ways to attack a device is using hardware-based exploitation techniques. These techniques are quite effective as most of the devices we encounter on a daily basis don’t usually have security protections build around the hardware aspect. Indeed, manufacturers often leave accessible some debug ports, more specifically \acrfull{uart} or \acrfull{jtag}. In short, these ports are used in factory to check the correct operation PCB. The \acrshort{uart} is used to communicate with the operating system. The \acrshort{jtag} is much more powerful and allows to communicate directly with the system on the chip. Unfortunately, the \acrshort{jtag} is not really standardized and requires much more time to know what is the function of each pin. However, there are cards made for this type of work and especially the JTAGulator \cite{jtagulator}.
+\paragraph{Shell access via \acrshort{uart}}\label{subsec:uart-jtag} In the discipline of hardware hacking, one of the most useful ways to attack a device is using hardware-based exploitation techniques. These techniques are quite effective as most of the devices we encounter on a daily basis do not usually have security protections build around the hardware aspect. Indeed, manufacturers often leave accessible some debug ports, more specifically \acrfull{uart} or \acrfull{jtag}. In short, these ports are used in factory to check the correct operation PCB. The \acrshort{uart} is used to communicate with the operating system. The \acrshort{jtag} is much more powerful and allows to communicate directly with the system on the chip. Unfortunately, the \acrshort{jtag} is not really standardized and requires much more time to know what is the function of each pin. However, there are cards made for this type of work and especially the JTAGulator \cite{jtagulator}.
 
 \begin{indentbox}{1cm}
 On the scope of this work, we will focus only on the \acrshort{uart}-based hacking, since we are not equipped to tackle \acrshort{jtag}. The \acrshort{uart} is a serial link for sending and receiving data. It has a fairly simple architecture, which comes down to a power supply (VCC and GND), a transmit pin (TX) and a receiver pin (RX). The transmitter speaks and the communication goes to his interlocutor (TX => RX) and the operation is reversed so that the receiver responds to the transmitter (TX => RX). It will therefore cross the connections.
 
-In most cases, the four pins of the \acrshort{uart} serial link situated next to each other. To determine which pin corresponds to VCC, GND, TX and RX, the easiest way is first to identify the GND by finding a known point in the PCB being the ground, and perform a continuity test with our multimeter. The VCC pin is not necessary in order to establish a connection so we just need to identify TX and Rx. To achieve that, simply turn the device on, and measure the difference in potential between the GND and the rest of the pins.
+In most cases, the four pins of the \acrshort{uart} serial link situated next to each other. To determine which pin corresponds to VCC, GND, TX and RX, the easiest way is first to identify the GND by finding a known point in the PCB being the ground, and perform a continuity test with our multimeter. The VCC pin is not necessary in order to establish a connection, so we just need to identify TX and Rx. To achieve that, simply turn on the device, and measure the difference in potential between the GND and the rest of the pins.
 \begin{itemize}[itemsep=0.1cm,topsep=0.1cm]
   \item TX should have an unstable value because information is passing on this pin.
-  \item RX should be 0.
+  \item RX should be 0 volt.
 \end{itemize}
 \end{indentbox}
 
 \begin{indentbox}{1cm}
-Once each pin identified, it is time to solder wires to the pins, and connect them to a computer’s USB port with the help of an adapter. To that end, we manufactured an USB-to-Serial adapter from a set of RJ-45 to DB-9 and DB-9 to USB cable, by cutting the RJ-45 end of it, identifying the TX, RX and ground wires and soldering a jumper wire to each end.
+Once each pin identified, it is time to solder wires to the pins, and connect them to a computer's USB port with the help of an adapter. To that end, we manufactured an USB-to-Serial adapter from a set of RJ-45 to DB-9 and DB-9 to USB cable, by cutting the RJ-45 end of it, identifying the TX, RX and ground wires and soldering a jumper wire to each end.
 
 \begin{figure}[H]
   \centering
@@ -267,7 +267,7 @@ Once each pin identified, it is time to solder wires to the pins, and connect th
   \label{fig:hw-hacking-wire}
 \end{figure}
 
-We use PuTTY \cite{putty} (on Windows) to connect the computer to the drone. The procedure consists in launching the serial connection on PuTTY while the drone is turned off, and then turn it on. This should provide us a shell access to the device’s operating system.
+We use PuTTY \cite{putty} (on Windows) to connect the computer to the drone. The procedure consists in launching the serial connection on PuTTY while the drone is turned off, and then turn it on. This should provide us a shell access to the device's operating system.
 \end{indentbox}
 
 \begin{tip}
@@ -277,7 +277,7 @@ For this work, we essentially apply the penetration testing methodology \acrshor
 
 \section{Tools \& Resources}\label{subsec:tools-and-resources}
 
-In the past, hacking was difficult and required a lot of manual tinkering. Today, hackers have complete suites of automated test tools and processing capabilities that allow them to conduct much more sophisticated attacks, on much larger scales and much faster. In order to end framing the background, various existing security solutions are presented in order to get an overview of what could be usable in the implementation of a penetration test. The remaining of this section presents useful and popular tools distinguished by categories, relevant to penetration testing but not necessarily in our scope. For each tool, it is mentioned if it was used in this project or not.
+In the past, hacking was difficult and required a lot of manual tinkering. Today, hackers have complete suites of automated test tools and processing capabilities that allow them to conduct much more sophisticated attacks, on much larger scales and much faster. Various existing security solutions are presented in order to get an overview of what could be usable in the implementation of a penetration test. The remaining of this section presents useful and popular tools distinguished by categories, relevant to penetration testing but not necessarily in our scope. For each tool, it is mentioned if it was used in this project or not.
 
 \subsection{Pentesting platforms}
 
@@ -341,11 +341,11 @@ As previously evoked, the reconnaissance is the very first of the phases, and it
 \end{itemize}
 \end{solutiondata}
 
-\textbf{Maltego} \cite{maltego} can be used to determine the relationships between people, websites, documents and files... Connections between these pieces of information are found using \acrfull{osint} techniques by querying sources such as DNS records, Whois records, search engines, social networks, various online APIs and extracting meta data. Maltego provides results in a wide range of graphical layouts that allow for clustering of information which makes seeing relationships instant and accurate – this makes it possible to see hidden connections even if they are three or four degrees of separation apart.
+\textbf{Maltego} \cite{maltego} can be used to determine the relationships between people, websites, documents and files... Connections between these pieces of information are found using \acrfull{osint} techniques by querying sources such as DNS records, Whois records, search engines, social networks, various online APIs and extracting meta data. Maltego provides results in a wide range of graphical layouts that allow for clustering of information, which makes seeing relationships instant and accurate – this makes it possible to see hidden connections even if they are three or four degrees of separation apart.
 
 \subsection{Vulnerability Analysis}
 
-New vulnerabilities are emerging every day, within networks, applications, databases. A vulnerability scanner is therefore a computer program designed to assess them for known weaknesses. They are utilized in the identification and detection of vulnerabilities arising from mis-configurations or flawed programming within a network-based asset such as a firewall, router, web server, application server, etc. Modern vulnerability scanners allow for both authenticated and unauthenticated scans. Once again, let’s have a look at some of the most popular ones.
+New vulnerabilities are emerging every day, within networks, applications, databases. A vulnerability scanner is therefore a computer program designed to assess them for known weaknesses. They are utilized in the identification and detection of vulnerabilities arising from mis-configurations or flawed programming within a network-based asset such as a firewall, router, web server, application server, etc. Modern vulnerability scanners allow for both authenticated and unauthenticated scans. Once again, let us have a look at some of the most popular ones.
 
 \begin{solutiondata}{nmap}
 \begin{itemize}[labelsep=1cm]
@@ -448,7 +448,7 @@ With a map of all possible vulnerabilities and entry points, the pentester begin
 
 \subsection{Reverse engineering}
 
-At some point in an assessment, it is frequent to encounter binaries we can analyze for potential vulnerabilities. In this case, we need to disassemble or decompile if possible the binary. A few relevant tools are presented hereafter for this purpose.
+At some point in an assessment, it is frequent to encounter binaries we can analyze for potential vulnerabilities. In this case, we need to disassemble or decompile (if possible) the binary. A few relevant tools are presented hereafter for this purpose.
 
 \begin{solutiondata}{jadx}
 \begin{itemize}[labelsep=1cm]
@@ -473,7 +473,7 @@ At some point in an assessment, it is frequent to encounter binaries we can anal
 \textbf{Hopper Disassembler} \cite{hopper} reads compiled software one byte at a time, until it recognizes a complete instruction, it then recreates part of the logical structure of the application, and allows to separate the different instructions into methods. Thanks to this analysis, Hopper is able to display a more graphic representation of the execution of the application and from there to manipulate it interactively.
 
 \begin{summary}
-The last few years, the \textbf{information and communication technology} sector is probably the sector that is most \textbf{spectacular} in terms of \textbf{progress} and \textbf{innovation}, both technologically and economically. In this context, companies tend to give more and more importance to securing their infrastructures since it could result in high capital loss if a breach is exploited.
+During the last few years, the \textbf{information and communication technology} sector is probably the one which has been the most \textbf{spectacular} in terms of \textbf{progress} and \textbf{innovation}, both technologically and economically. In this context, companies tend to give more and more importance to securing their infrastructures since it could result in high capital loss if a breach is exploited.
 
 Some facts for 2019 : \cite{facts-and-figures} \vspace{-.3cm}
 \begin{itemize}[itemsep=.1cm,labelsep=.1cm]
@@ -487,12 +487,12 @@ In particular, business owners are steadily realizing the benefits of the \textb
 As a response to the threats that emerged, a new type of IT specialist has developed : the \textbf{pentester}. A pentester is anyone who tests the security of a computer system, network, or web application for vulnerabilities that an attacker might exploit. Once the security breaches are identified, he defines the level of criticality and vulnerability, proposes conclusions and recommends technical solutions to remedy or increase the security of computer systems.
 
 \begin{info}
-Some hackers start their careers being bad guys (often called "Black Hat") trying to break into systems for their own profit, and then, later take the knowledge acquired during the first outlaw part of their lives to become established security specialists (referred as "White Hat").
+Some hackers start their careers being bad guys (often called "black hat hackers") trying to break into systems for their own profit, and then, later take the knowledge acquired during the first outlaw part of their lives to become established security specialists (referred as to "white hat hackers").
 \end{info}
 
 A \textbf{penetration test} can take a \textbf{different form} according to the requirements of the target organization, the assessment depth and the degree of starting information.
 
-Faced with an \acrshort{is} or many, has to assess its security and report his discoveries in a structured way. A framed and fixed methodology then makes it possible to follow a canvas and thus to organize the penetration test so that it is as complete as possible and repeatable, such as the \textbf{\acrshort{ptes}} \cite{ptes}.
+Faced with one or many \acrshort{is}'s, the pentester has to assess their security and report the findings in a structured way. A framed and fixed methodology then makes it possible to follow a canvas and thus to organize the penetration test so that it is as complete as possible and repeatable, such as the \textbf{\acrshort{ptes}} \cite{ptes}.
 
 In an effort to improve the global security of \acrshort{is}, \textbf{known vulnerabilities}, \textbf{techniques} and all \textbf{knowledge} in general is commonly shared by the pentester in an effort to raise awareness and gather all the resources available to find improvements.
 
@@ -500,6 +500,17 @@ Eventually, as a direct and logic consequence to the above, a large set of \text
 \end{summary}
 
 \begin{discussion}
+With the evolution of technologies, the IT security field is more and more at the center of the attention. As a consequence, IT professionals have developed their skills and many specialties arose. We to talk about cyber crisis manager, developer specialized in security, cryptologist, lawyer specialized in cybersecurity, but also the pentester.
+
+A pentester has for mission to break into a system in order to identify its vulnerabilities, and raise awareness before harm can be done. He basically carries out the same attacks that a malicious hacker would, but stops before causing any harm, does not exploit the benefits for personal gain and advise his clients on security measures that have to be taken in order to strengthen their system.
+
+Not that long ago, it was primarily something for only the techies to worry about. But with the growth of the demand in cybersecurity, the offer consequently followed and more and more people specialize on the field, which promises a bright future.
+
+A self-respecting pentester must a rather good general understanding every field (software, hardware, programming, network ...) and everything that is closely related to computer science. In other words: master the technologies he uses. Therefore, in the context of this thesis, a subsequent amount of time was spent practicing those tools prior to actually beginning the pentest process. To that end, we obviously relied on the great amount of documentation, pentest reports made available by the community.
+
+To train pentesting skills, there are also a few very good platforms in which some Capture The Flag (CTF) challenges are designed in order to practice techniques as well as full-scale attacks on systems. To name a few, some of the best places to look for are RootMe \cite{rootme}, Hack-the-Box \cite{hack-the-box} and VulnHub \cite{vulnhub}.
+
+Watch out if you try it for yourself, this is highly addictive !
 \end{discussion}
 
 \end{chaptercover}
